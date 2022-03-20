@@ -1,5 +1,5 @@
 <?php
-class Size
+class Level
 {
     const LEVEL_1 = 'LEVEL_1';
     const LEVEL_2 = 'LEVEL_2';

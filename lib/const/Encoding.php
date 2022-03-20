@@ -1,5 +1,5 @@
 <?php
-class Encode
+class Encoding
 {
     const ENCODE_NUMERIC = 'ENCODE_NUMERIC';
     const ENCODE_ALPHANUMERIC = 'ENCODE_ALPHANUMERIC';
