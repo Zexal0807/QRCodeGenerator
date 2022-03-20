@@ -1,8 +1,5 @@
 <?php
-
-require_once('./lib/const/Level.php');
-require_once('./lib/const/Encoding.php');
-require_once('./lib/const/ErrorCorrection.php');
+require_once('./lib/loadData.php');
 
 class QRCode
 {
@@ -11,11 +8,15 @@ class QRCode
     {
     }
 
-    static function findBestLevel($data, Encoding $encoding, ErrorCorrection $errorCorrection)
+    static function  findBestLevel($data, Encoding $encoding, ErrorCorrection $errorCorrection)
     {
-    }
-
-    static function getUpperLimit(Level $level, Encoding $encoding, ErrorCorrection $errorCorrection)
-    {
+        $need = strlen($data);
+        for ($i = 1; $i <= 40; $i++) {
+            $level = Level::${"LEVEL_" . $i};
+            if ($level->getUpperLimit($encoding, $errorCorrection) > $need) {
+                return $level;
+            }
+        }
+        throw new Exception("to much data");
     }
 }

@@ -15,8 +15,12 @@ class Level
         $this->capacity = $capacity;
     }
 
+    public function getLevel()
+    {
+        return $this->level;
+    }
 
-    function getUpperLimit(Encoding $encoding, ErrorCorrection $errorCorrection)
+    public function getUpperLimit(Encoding $encoding, ErrorCorrection $errorCorrection)
     {
         return $this->capacity[$encoding->getEncoding()][$errorCorrection->getCorrection()];
     }
