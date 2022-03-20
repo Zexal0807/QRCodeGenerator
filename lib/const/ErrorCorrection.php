@@ -1,14 +1,27 @@
 <?php
 class ErrorCorrection
 {
-    const CORRECTION_L = 'CORRECTION_L';
-    const CORRECTION_M = 'CORRECTION_M';
-    const CORRECTION_Q = 'CORRECTION_Q';
-    const CORRECTION_H = 'CORRECTION_H';
-    /*
-    const VALUE_CORRECTION_L = 0.07;
-    const VALUE_CORRECTION_M = 0.15;
-    const VALUE_CORRECTION_Q = 0.25;
-    const VALUE_CORRECTION_H = 0.30;
-    */
+
+    private $correction;
+    private $value;
+
+    public function __construct($correction, $value)
+    {
+        $this->correction = $correction;
+        $this->value = $value;
+    }
+
+    static $CORRECTION_L;
+    static $CORRECTION_M;
+    static $CORRECTION_Q;
+    static $CORRECTION_H;
+
+    static function init()
+    {
+        ErrorCorrection::$CORRECTION_L = new ErrorCorrection('CORRECTION_L', 0.07);
+        ErrorCorrection::$CORRECTION_M = new ErrorCorrection('CORRECTION_M', 0.15);
+        ErrorCorrection::$CORRECTION_Q = new ErrorCorrection('CORRECTION_Q', 0.25);
+        ErrorCorrection::$CORRECTION_H = new ErrorCorrection('CORRECTION_H', 0.30);
+    }
 }
+ErrorCorrection::init();
