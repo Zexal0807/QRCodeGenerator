@@ -1,6 +1,48 @@
 <?php
 class Size
 {
+    const LEVEL_1 = 'LEVEL_1';
+    const LEVEL_2 = 'LEVEL_2';
+    const LEVEL_3 = 'LEVEL_3';
+    const LEVEL_4 = 'LEVEL_4';
+    const LEVEL_5 = 'LEVEL_5';
+    const LEVEL_6 = 'LEVEL_6';
+    const LEVEL_7 = 'LEVEL_7';
+    const LEVEL_8 = 'LEVEL_8';
+    const LEVEL_9 = 'LEVEL_9';
+    const LEVEL_10 = 'LEVEL_10';
+    const LEVEL_11 = 'LEVEL_11';
+    const LEVEL_12 = 'LEVEL_12';
+    const LEVEL_13 = 'LEVEL_13';
+    const LEVEL_14 = 'LEVEL_14';
+    const LEVEL_15 = 'LEVEL_15';
+    const LEVEL_16 = 'LEVEL_16';
+    const LEVEL_17 = 'LEVEL_17';
+    const LEVEL_18 = 'LEVEL_18';
+    const LEVEL_19 = 'LEVEL_19';
+    const LEVEL_20 = 'LEVEL_20';
+    const LEVEL_21 = 'LEVEL_21';
+    const LEVEL_22 = 'LEVEL_22';
+    const LEVEL_23 = 'LEVEL_23';
+    const LEVEL_24 = 'LEVEL_24';
+    const LEVEL_25 = 'LEVEL_25';
+    const LEVEL_26 = 'LEVEL_26';
+    const LEVEL_27 = 'LEVEL_27';
+    const LEVEL_28 = 'LEVEL_28';
+    const LEVEL_29 = 'LEVEL_29';
+    const LEVEL_30 = 'LEVEL_30';
+    const LEVEL_31 = 'LEVEL_31';
+    const LEVEL_32 = 'LEVEL_32';
+    const LEVEL_33 = 'LEVEL_33';
+    const LEVEL_34 = 'LEVEL_34';
+    const LEVEL_35 = 'LEVEL_35';
+    const LEVEL_36 = 'LEVEL_36';
+    const LEVEL_37 = 'LEVEL_37';
+    const LEVEL_38 = 'LEVEL_38';
+    const LEVEL_39 = 'LEVEL_39';
+    const LEVEL_40 = 'LEVEL_40';
+
+    /*
     const LEVEL_1 = ["width" => 21, "height" => 21];
     const LEVEL_2 = ["width" => 25, "height" => 25];
     const LEVEL_3 = ["width" => 29, "height" => 29];
@@ -41,4 +83,5 @@ class Size
     const LEVEL_38 = ["width" => 169, "height" => 169];
     const LEVEL_39 = ["width" => 173, "height" => 173];
     const LEVEL_40 = ["width" => 177, "height" => 177];
+    */
 }

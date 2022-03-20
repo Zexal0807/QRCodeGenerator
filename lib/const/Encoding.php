@@ -1,0 +1,8 @@
+<?php
+class Encode
+{
+    const ENCODE_NUMERIC = 'ENCODE_NUMERIC';
+    const ENCODE_ALPHANUMERIC = 'ENCODE_ALPHANUMERIC';
+    const ENCODE_BYTE = 'ENCODE_BYTE';
+    const ENCODE_KANJI = 'ENCODE_KANJI';
+}
