@@ -38,4 +38,9 @@ Level::$LEVEL_1 = new Level('LEVEL_1', 21, 21, [
         ErrorCorrection::$CORRECTION_Q->getCorrection() => 7,
         ErrorCorrection::$CORRECTION_H->getCorrection() => 4
     ]
+], [
+    Encoding::$ENCODING_NUMERIC->getEncoding() => 10,
+    Encoding::$ENCODING_ALPHANUMERIC->getEncoding() => 9,
+    Encoding::$ENCODING_BYTE->getEncoding() => 8,
+    Encoding::$ENCODING_KANJI->getEncoding() => 8
 ]);

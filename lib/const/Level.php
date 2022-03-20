@@ -3,16 +3,18 @@ class Level
 {
 
     private $level;
-    private $width;
-    private $height;
+    private $maxWidth;
+    private $maxHeight;
     private $capacity;
+    private $characterCountIndicatorLength;
 
-    public function __construct($level, $width, $height, $capacity)
+    public function __construct($level, $maxWidth, $maxHeight, $capacity, $characterCountIndicatorLength)
     {
         $this->level = $level;
-        $this->width = $width;
-        $this->height = $height;
+        $this->maxWidth = $maxWidth;
+        $this->maxHeight = $maxHeight;
         $this->capacity = $capacity;
+        $this->characterCountIndicatorLength = $characterCountIndicatorLength;
     }
 
     public function getLevel()
@@ -20,9 +22,14 @@ class Level
         return $this->level;
     }
 
-    public function getUpperLimit(Encoding $encoding, ErrorCorrection $errorCorrection)
+    public function getCapacity(Encoding $encoding, ErrorCorrection $errorCorrection)
     {
         return $this->capacity[$encoding->getEncoding()][$errorCorrection->getCorrection()];
+    }
+
+    public function getCharacterCountIndicatorLength(Encoding $encoding)
+    {
+        return $this->characterCountIndicatorLength[$encoding->getEncoding()];
     }
 
     static $LEVEL_1;

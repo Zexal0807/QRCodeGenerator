@@ -4,8 +4,16 @@ require_once('./lib/loadData.php');
 class QRCode
 {
 
-    static function generate($data, Level $level, ErrorCorrection $errorCorrection)
+    static function generate($data, Level $level,  Encoding $encoding, ErrorCorrection $errorCorrection)
     {
+
+        $modeIndicator = $encoding->getModeIndicator();
+        $characterCountIndicatorLength = $level->getCharacterCountIndicatorLength($encoding);
+        $characterCountIndicator = sprintf("%0" . $characterCountIndicatorLength . "b", strlen($data));
+
+        $encodedData = $encoding->encode($data);
+
+        return $characterCountIndicator;
     }
 
     static function  findBestLevel($data, Encoding $encoding, ErrorCorrection $errorCorrection)
@@ -13,7 +21,7 @@ class QRCode
         $need = strlen($data);
         for ($i = 1; $i <= 40; $i++) {
             $level = Level::${"LEVEL_" . $i};
-            if ($level->getUpperLimit($encoding, $errorCorrection) > $need) {
+            if ($level->getCapacity($encoding, $errorCorrection) > $need) {
                 return $level;
             }
         }
