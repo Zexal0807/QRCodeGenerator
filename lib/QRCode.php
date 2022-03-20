@@ -13,7 +13,7 @@ class QRCode
 
         $encodedData = $encoding->encode($data);
 
-        return $characterCountIndicator;
+        return $modeIndicator . " " . $characterCountIndicator . " " . $encodedData;
     }
 
     static function  findBestLevel($data, Encoding $encoding, ErrorCorrection $errorCorrection)

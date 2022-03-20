@@ -1,12 +1,16 @@
 <?php
 require_once('./lib/const/Encoding.php');
+require_once('./lib/const/NumericModeEncoding.php');
+require_once('./lib/const/AlphanumericModeEncoding.php');
+require_once('./lib/const/ByteModeEncoding.php');
+require_once('./lib/const/KanjiModeEncoding.php');
 require_once('./lib/const/ErrorCorrection.php');
 require_once('./lib/const/Level.php');
 
-Encoding::$ENCODING_NUMERIC = new Encoding('ENCODING_NUMERIC', '0001');
-Encoding::$ENCODING_ALPHANUMERIC = new Encoding('ENCODING_ALPHANUMERIC', '0010');
-Encoding::$ENCODING_BYTE = new Encoding('ENCODING_BYTE', '0100');
-Encoding::$ENCODING_KANJI = new Encoding('ENCODING_KANJI', '1000');
+Encoding::$ENCODING_NUMERIC = new NumericModeEncoding('ENCODING_NUMERIC', '0001');
+Encoding::$ENCODING_ALPHANUMERIC = new AlphanumericModeEncoding('ENCODING_ALPHANUMERIC', '0010');
+Encoding::$ENCODING_BYTE = new ByteModeEncoding('ENCODING_BYTE', '0100');
+Encoding::$ENCODING_KANJI = new KanjiModeEncoding('ENCODING_KANJI', '1000');
 
 ErrorCorrection::$CORRECTION_L = new ErrorCorrection('CORRECTION_L', 0.07);
 ErrorCorrection::$CORRECTION_M = new ErrorCorrection('CORRECTION_M', 0.15);

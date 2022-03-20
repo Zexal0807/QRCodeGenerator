@@ -1,18 +1,25 @@
 <?php
-class Encoding
+abstract class Encoding
 {
     private $encoding;
-    private $inidicator;
+    private $modeInidicator;
 
-    public function __construct($encoding, $inidicator)
+    public function __construct($encoding, $modeInidicator)
     {
         $this->encoding = $encoding;
-        $this->inidicator = $inidicator;
+        $this->modeInidicator = $modeInidicator;
     }
     public function getEncoding()
     {
         return $this->encoding;
     }
+
+    public function getModeIndicator()
+    {
+        return $this->modeInidicator;
+    }
+
+    abstract public function encode($data);
 
     static $ENCODING_NUMERIC;
     static $ENCODING_ALPHANUMERIC;
