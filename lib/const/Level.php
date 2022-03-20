@@ -1,16 +1,20 @@
 <?php
+require_once('./lib/const/Encoding.php');
+require_once('./lib/const/ErrorCorrection.php');
 class Level
 {
 
     private $level;
     private $width;
     private $height;
+    private $capacity;
 
-    public function __construct($level, $width, $height)
+    public function __construct($level, $width, $height, $capacity)
     {
         $this->level = $level;
         $this->width = $width;
         $this->height = $height;
+        $this->capacity = $capacity;
     }
 
     static $LEVEL_1;
@@ -56,7 +60,33 @@ class Level
 
     static function init()
     {
-        Level::$LEVEL_1 = new Level('LEVEL_1', 21, 21);
+        Level::$LEVEL_1 = new Level('LEVEL_1', 21, 21, [
+            Encoding::$ENCODING_NUMERIC => [
+                ErrorCorrection::$CORRECTION_L => 41,
+                ErrorCorrection::$CORRECTION_M => 34,
+                ErrorCorrection::$CORRECTION_Q => 27,
+                ErrorCorrection::$CORRECTION_H => 17
+            ],
+            Encoding::$ENCODING_ALPHANUMERIC => [
+                ErrorCorrection::$CORRECTION_L => 25,
+                ErrorCorrection::$CORRECTION_M => 20,
+                ErrorCorrection::$CORRECTION_Q => 16,
+                ErrorCorrection::$CORRECTION_H => 10
+            ],
+            Encoding::$ENCODING_BYTE => [
+                ErrorCorrection::$CORRECTION_L => 17,
+                ErrorCorrection::$CORRECTION_M => 14,
+                ErrorCorrection::$CORRECTION_Q => 11,
+                ErrorCorrection::$CORRECTION_H => 7
+            ],
+            Encoding::$ENCODING_KANJI => [
+                ErrorCorrection::$CORRECTION_L => 10,
+                ErrorCorrection::$CORRECTION_M => 8,
+                ErrorCorrection::$CORRECTION_Q => 7,
+                ErrorCorrection::$CORRECTION_H => 4
+            ]
+        ]);
+        /*
         Level::$LEVEL_2 = new Level('LEVEL_2', 25, 25);
         Level::$LEVEL_3 = new Level('LEVEL_3', 29, 29);
         Level::$LEVEL_4 = new Level('LEVEL_4', 33, 33);
@@ -96,6 +126,7 @@ class Level
         Level::$LEVEL_38 = new Level('LEVEL_38', 169, 169);
         Level::$LEVEL_39 = new Level('LEVEL_39', 173, 173);
         Level::$LEVEL_40 = new Level('LEVEL_40', 177, 177);
+        */
     }
 }
 Level::init();
