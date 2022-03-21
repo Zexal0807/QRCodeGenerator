@@ -17,6 +17,7 @@ ErrorCorrection::$CORRECTION_M = new ErrorCorrection('CORRECTION_M', 0.15);
 ErrorCorrection::$CORRECTION_Q = new ErrorCorrection('CORRECTION_Q', 0.25);
 ErrorCorrection::$CORRECTION_H = new ErrorCorrection('CORRECTION_H', 0.30);
 
+// TODO: implementare i vari libelli magari con json
 Level::$LEVEL_1 = new Level('LEVEL_1', 21, 21, [
     Encoding::$ENCODING_NUMERIC->getEncoding() => [
         ErrorCorrection::$CORRECTION_L->getCorrection() => 41,
