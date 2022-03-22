@@ -6,10 +6,38 @@ class QRCode
 
     static function generate($data, Level $level,  Encoding $encoding, ErrorCorrection $errorCorrection)
     {
-        $bitString = QRCode::encode($data, $level,  $encoding, $errorCorrection);
-        return $bitString;
+        $dataCodewords = QRCode::encode($data, $level,  $encoding, $errorCorrection);
+
+        $dataCodewords = QRCode::splitCodewords($dataCodewords, $level,  $encoding, $errorCorrection);
+
+
+        return $dataCodewords;
     }
 
+    private static function splitCodewords($dataCodewords, Level $level,  Encoding $encoding, ErrorCorrection $errorCorrection)
+    {
+        $groups = [
+            "GROUP_1" => [
+                "BLOCK_1" => []
+            ],
+            "GROUP_2" => []
+        ];
+
+        for ($i = 1; $i <= $level->getBlocksInGroup(1, $errorCorrection); $i++) {
+            $groups['GROUP_1']['BLOCK_' . $i] = [];
+            for ($j = 1; $j <= $level->getBlocksSizeInGroup(1, $errorCorrection); $j++) {
+                array_push($groups['GROUP_1']['BLOCK_' . $i], array_pop($dataCodewords));
+            }
+        }
+        for ($i = 1; $i < $level->getBlocksInGroup(2, $errorCorrection); $i++) {
+            $groups['GROUP_2']['BLOCK_' . $i] = [];
+            for ($j = 1; $j <= $level->getBlocksSizeInGroup(2, $errorCorrection); $j++) {
+                array_push($groups['GROUP_1']['BLOCK_' . $i], array_pop($dataCodewords));
+            }
+        }
+
+        return $groups;
+    }
 
     static function encode($data, Level $level,  Encoding $encoding, ErrorCorrection $errorCorrection)
     {
@@ -41,9 +69,10 @@ class QRCode
             $selected = ($selected + 1) % 2;
         }
 
-        return $bitString;
-    }
+        $dataCodewords = str_split($bitString, 8);
 
+        return $dataCodewords;
+    }
 
     static function  findBestLevel($data, Encoding $encoding, ErrorCorrection $errorCorrection)
     {

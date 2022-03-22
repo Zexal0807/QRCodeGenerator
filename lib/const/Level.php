@@ -1,27 +1,35 @@
 <?php
 class Level
 {
-
     private $level;
+    private $version;
     private $maxWidth;
     private $maxHeight;
     private $capacity;
     private $characterCountIndicatorLength;
     private $codewords;
+    private $errorCorrectionCodewords;
 
-    public function __construct($level, $maxWidth, $maxHeight, $capacity, $characterCountIndicatorLength, $codewords)
+    public function __construct($level, $maxWidth, $maxHeight, $capacity, $characterCountIndicatorLength, $codewords, $errorCorrectionCodewords)
     {
         $this->level = $level;
+        $this->version = intval(substr($level, 6));
         $this->maxWidth = $maxWidth;
         $this->maxHeight = $maxHeight;
         $this->capacity = $capacity;
         $this->characterCountIndicatorLength = $characterCountIndicatorLength;
         $this->codewords = $codewords;
+        $this->errorCorrectionCodewords = $errorCorrectionCodewords;
     }
 
     public function getLevel()
     {
         return $this->level;
+    }
+
+    public function getVersion()
+    {
+        return $this->version;
     }
 
     public function getCapacity(Encoding $encoding, ErrorCorrection $errorCorrection)
@@ -38,6 +46,16 @@ class Level
     {
         $tmp = $this->codewords[$errorCorrection->getCorrection()];
         return $tmp['GROUP_1']['NUMBER_BLOCKS'] * $tmp['GROUP_1']['BLOCKS_CODEWORDS'] + $tmp['GROUP_2']['NUMBER_BLOCKS'] * $tmp['GROUP_2']['BLOCKS_CODEWORDS'];
+    }
+
+    public function getBlocksInGroup($group, ErrorCorrection $errorCorrection)
+    {
+        return $this->codewords[$errorCorrection->getCorrection()]['GROUP_' . $group]['NUMBER_BLOCKS'];
+    }
+
+    public function getBlocksSizeInGroup($group, ErrorCorrection $errorCorrection)
+    {
+        return $this->codewords[$errorCorrection->getCorrection()]['GROUP_' . $group]['BLOCKS_CODEWORDS'];
     }
 
     static $LEVEL_1;
