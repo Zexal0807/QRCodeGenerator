@@ -34,9 +34,9 @@ class Level
         return $this->characterCountIndicatorLength[$encoding->getEncoding()];
     }
 
-    public function getTotalDataCodewords(Encoding $encoding)
+    public function getTotalDataCodewords(ErrorCorrection $errorCorrection)
     {
-        $tmp = $this->codewords[$encoding->getEncoding()];
+        $tmp = $this->codewords[$errorCorrection->getCorrection()];
         return $tmp['GROUP_1']['NUMBER_BLOCKS'] * $tmp['GROUP_1']['BLOCKS_CODEWORDS'] + $tmp['GROUP_2']['NUMBER_BLOCKS'] * $tmp['GROUP_2']['BLOCKS_CODEWORDS'];
     }
 
