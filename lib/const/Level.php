@@ -7,14 +7,16 @@ class Level
     private $maxHeight;
     private $capacity;
     private $characterCountIndicatorLength;
+    private $codewords;
 
-    public function __construct($level, $maxWidth, $maxHeight, $capacity, $characterCountIndicatorLength)
+    public function __construct($level, $maxWidth, $maxHeight, $capacity, $characterCountIndicatorLength, $codewords)
     {
         $this->level = $level;
         $this->maxWidth = $maxWidth;
         $this->maxHeight = $maxHeight;
         $this->capacity = $capacity;
         $this->characterCountIndicatorLength = $characterCountIndicatorLength;
+        $this->codewords = $codewords;
     }
 
     public function getLevel()
@@ -30,6 +32,12 @@ class Level
     public function getCharacterCountIndicatorLength(Encoding $encoding)
     {
         return $this->characterCountIndicatorLength[$encoding->getEncoding()];
+    }
+
+    public function getTotalDataCodewords(Encoding $encoding)
+    {
+        $tmp = $this->codewords[$encoding->getEncoding()];
+        return $tmp['GROUP_1']['NUMBER_BLOCKS'] * $tmp['GROUP_1']['BLOCKS_CODEWORDS'] + $tmp['GROUP_2']['NUMBER_BLOCKS'] * $tmp['GROUP_2']['BLOCKS_CODEWORDS'];
     }
 
     static $LEVEL_1;

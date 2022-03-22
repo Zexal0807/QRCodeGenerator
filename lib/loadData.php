@@ -48,4 +48,45 @@ Level::$LEVEL_1 = new Level('LEVEL_1', 21, 21, [
     Encoding::$ENCODING_ALPHANUMERIC->getEncoding() => 9,
     Encoding::$ENCODING_BYTE->getEncoding() => 8,
     Encoding::$ENCODING_KANJI->getEncoding() => 8
+], [
+    ErrorCorrection::$CORRECTION_L->getCorrection() => [
+        "GROUP_1" => [
+            "NUMBER_BLOCKS" => 1,
+            "BLOCKS_CODEWORDS" => 19
+        ],
+        "GROUP_2" => [
+            "NUMBER_BLOCKS" => 0,
+            "BLOCKS_CODEWORDS" => 0
+        ]
+    ],
+    ErrorCorrection::$CORRECTION_M->getCorrection() => [
+        "GROUP_1" => [
+            "NUMBER_BLOCKS" => 1,
+            "BLOCKS_CODEWORDS" => 16
+        ],
+        "GROUP_2" => [
+            "NUMBER_BLOCKS" => 0,
+            "BLOCKS_CODEWORDS" => 0
+        ]
+    ],
+    ErrorCorrection::$CORRECTION_Q->getCorrection() => [
+        "GROUP_1" => [
+            "NUMBER_BLOCKS" => 1,
+            "BLOCKS_CODEWORDS" => 13
+        ],
+        "GROUP_2" => [
+            "NUMBER_BLOCKS" => 0,
+            "BLOCKS_CODEWORDS" => 0
+        ]
+    ],
+    ErrorCorrection::$CORRECTION_H->getCorrection() => [
+        "GROUP_1" => [
+            "NUMBER_BLOCKS" => 1,
+            "BLOCKS_CODEWORDS" => 9
+        ],
+        "GROUP_2" => [
+            "NUMBER_BLOCKS" => 0,
+            "BLOCKS_CODEWORDS" => 0
+        ]
+    ]
 ]);

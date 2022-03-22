@@ -13,7 +13,17 @@ class QRCode
 
         $encodedData = $encoding->encode($data);
 
-        return $modeIndicator . " " . $characterCountIndicator . " " . $encodedData;
+        $bitString = $modeIndicator . "" . $characterCountIndicator . "" . $encodedData;
+
+        $requiredNumberBits = $level->getTotalDataCodewords($encoding) * 8;
+        // Add Pad Bytes
+
+
+
+        //$capacity = $level->getCapacity($encoding, $errorCorrection);
+        //$bitString = $bitString . str_repeat("0", $capacity - strlen($bitString));
+
+        return $bitString;
     }
 
     static function  findBestLevel($data, Encoding $encoding, ErrorCorrection $errorCorrection)
