@@ -10,8 +10,36 @@ class QRCode
 
         $dataCodewords = QRCode::splitCodewords($dataCodewords, $level,  $encoding, $errorCorrection);
 
+        $dataCodewords = QRCode::calcErrorCodewords($dataCodewords, $level,  $errorCorrection);
+
 
         return $dataCodewords;
+    }
+
+    private static function calcErrorCodewords($groups, Level $level, ErrorCorrection $errorCorrection)
+    {
+        for ($i = 1; $i <= $level->getBlocksInGroup(1, $errorCorrection); $i++) {
+            for ($j = 1; $j <= $level->getBlocksSizeInGroup(1, $errorCorrection); $j++) {
+                $groups['GROUP_1']['BLOCK_' . $i . "_EC"] = QRCode::calcErrorCodewordsInBlock($groups['GROUP_1']['BLOCK_' . $i], $level->getErrorCorrectionCodewordsForBlock($errorCorrection));
+            }
+        }
+        for ($i = 1; $i < $level->getBlocksInGroup(2, $errorCorrection); $i++) {
+            for ($j = 1; $j <= $level->getBlocksSizeInGroup(2, $errorCorrection); $j++) {
+                $groups['GROUP_2']['BLOCK_' . $i . "_EC"] = QRCode::calcErrorCodewordsInBlock($groups['GROUP_2']['BLOCK_' . $i], $level->getErrorCorrectionCodewordsForBlock($errorCorrection));
+            }
+        }
+        return $groups;
+    }
+
+    private static function calcErrorCodewordsInBlock($blockCodewords, $errorCorrectionCodewordsInBlock)
+    {
+        $tmp = array_map(function ($el) {
+            return bindec($el);
+        }, $blockCodewords);
+
+        // TODO: Implementare divisione polinomiale
+
+        return $tmp;
     }
 
     private static function splitCodewords($dataCodewords, Level $level,  Encoding $encoding, ErrorCorrection $errorCorrection)

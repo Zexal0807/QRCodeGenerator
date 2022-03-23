@@ -8,9 +8,9 @@ class Level
     private $capacity;
     private $characterCountIndicatorLength;
     private $codewords;
-    private $errorCorrectionCodewords;
+    private $errorCorrectionCodewordsForBlock;
 
-    public function __construct($level, $maxWidth, $maxHeight, $capacity, $characterCountIndicatorLength, $codewords, $errorCorrectionCodewords)
+    public function __construct($level, $maxWidth, $maxHeight, $capacity, $characterCountIndicatorLength, $codewords, $errorCorrectionCodewordsForBlock)
     {
         $this->level = $level;
         $this->version = intval(substr($level, 6));
@@ -19,7 +19,7 @@ class Level
         $this->capacity = $capacity;
         $this->characterCountIndicatorLength = $characterCountIndicatorLength;
         $this->codewords = $codewords;
-        $this->errorCorrectionCodewords = $errorCorrectionCodewords;
+        $this->errorCorrectionCodewordsForBlock = $errorCorrectionCodewordsForBlock;
     }
 
     public function getLevel()
@@ -56,6 +56,12 @@ class Level
     public function getBlocksSizeInGroup($group, ErrorCorrection $errorCorrection)
     {
         return $this->codewords[$errorCorrection->getCorrection()]['GROUP_' . $group]['BLOCKS_CODEWORDS'];
+    }
+
+    public function getErrorCorrectionCodewordsForBlock(ErrorCorrection $errorCorrection)
+    {
+
+        return $this->errorCorrectionCodewordsForBlock[$errorCorrection->getCorrection()];
     }
 
     static $LEVEL_1;
