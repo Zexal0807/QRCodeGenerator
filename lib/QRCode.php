@@ -1,5 +1,6 @@
 <?php
 require_once('./lib/loadData.php');
+require_once('./lib/PolynomialDivision.php');
 
 class QRCode
 {
@@ -12,34 +13,23 @@ class QRCode
 
         $dataCodewords = QRCode::calcErrorCodewords($dataCodewords, $level,  $errorCorrection);
 
-
         return $dataCodewords;
     }
 
     private static function calcErrorCodewords($groups, Level $level, ErrorCorrection $errorCorrection)
     {
         for ($i = 1; $i <= $level->getBlocksInGroup(1, $errorCorrection); $i++) {
-            for ($j = 1; $j <= $level->getBlocksSizeInGroup(1, $errorCorrection); $j++) {
-                $groups['GROUP_1']['BLOCK_' . $i . "_EC"] = QRCode::calcErrorCodewordsInBlock($groups['GROUP_1']['BLOCK_' . $i], $level->getErrorCorrectionCodewordsForBlock($errorCorrection));
-            }
+            $groups['GROUP_1']['BLOCK_' . $i . "_EC"] = QRCode::calcErrorCodewordsInBlock($groups['GROUP_1']['BLOCK_' . $i], $level->getErrorCorrectionCodewordsForBlock($errorCorrection));
         }
         for ($i = 1; $i < $level->getBlocksInGroup(2, $errorCorrection); $i++) {
-            for ($j = 1; $j <= $level->getBlocksSizeInGroup(2, $errorCorrection); $j++) {
-                $groups['GROUP_2']['BLOCK_' . $i . "_EC"] = QRCode::calcErrorCodewordsInBlock($groups['GROUP_2']['BLOCK_' . $i], $level->getErrorCorrectionCodewordsForBlock($errorCorrection));
-            }
+            $groups['GROUP_2']['BLOCK_' . $i . "_EC"] = QRCode::calcErrorCodewordsInBlock($groups['GROUP_2']['BLOCK_' . $i], $level->getErrorCorrectionCodewordsForBlock($errorCorrection));
         }
         return $groups;
     }
 
     private static function calcErrorCodewordsInBlock($blockCodewords, $errorCorrectionCodewordsInBlock)
     {
-        $tmp = array_map(function ($el) {
-            return bindec($el);
-        }, $blockCodewords);
-
-        // TODO: Implementare divisione polinomiale
-
-        return $tmp;
+        return PolynomialDivision::calc($blockCodewords, $errorCorrectionCodewordsInBlock);
     }
 
     private static function splitCodewords($dataCodewords, Level $level,  Encoding $encoding, ErrorCorrection $errorCorrection)
@@ -54,13 +44,13 @@ class QRCode
         for ($i = 1; $i <= $level->getBlocksInGroup(1, $errorCorrection); $i++) {
             $groups['GROUP_1']['BLOCK_' . $i] = [];
             for ($j = 1; $j <= $level->getBlocksSizeInGroup(1, $errorCorrection); $j++) {
-                array_push($groups['GROUP_1']['BLOCK_' . $i], array_pop($dataCodewords));
+                array_push($groups['GROUP_1']['BLOCK_' . $i], bindec(array_pop($dataCodewords)));
             }
         }
         for ($i = 1; $i < $level->getBlocksInGroup(2, $errorCorrection); $i++) {
             $groups['GROUP_2']['BLOCK_' . $i] = [];
             for ($j = 1; $j <= $level->getBlocksSizeInGroup(2, $errorCorrection); $j++) {
-                array_push($groups['GROUP_1']['BLOCK_' . $i], array_pop($dataCodewords));
+                array_push($groups['GROUP_1']['BLOCK_' . $i], bindec(array_pop($dataCodewords)));
             }
         }
 
