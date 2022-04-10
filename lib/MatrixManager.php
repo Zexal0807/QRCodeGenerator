@@ -24,6 +24,7 @@ class MatrixManager
     {
         $this->data = $data;
         $this->addFinderPatternsAndSeparetors();
+        $this->addAlignmentPatterns();
     }
 
     private function addFinderPatternsAndSeparetors()
@@ -64,6 +65,22 @@ class MatrixManager
         ];
         $this->addPattern($pattern, 0, $this->level->getSize() - 8);
     }
+
+    private function addAlignmentPatterns()
+    {
+        $pattern = [
+            [0, 0, 0, 0, 0],
+            [0, 1, 1, 1, 0],
+            [0, 1, 0, 1, 0],
+            [0, 1, 1, 1, 0],
+            [0, 0, 0, 0, 0]
+        ];
+
+        foreach ($this->level->getAlignmentPatternCenter() as $center) {
+            $this->addPattern($pattern, $center[0] - 2, $center[1] - 2);
+        }
+    }
+
 
     private function addPattern($pattern, $cornerX = 0, $cornerY = 0)
     {
