@@ -28,6 +28,7 @@ class MatrixManager
         $this->resetMatrix();
         $this->addFinderPatternsAndSeparetors();
         $this->addAlignmentPatterns();
+        $this->addTimingPatterns();
     }
 
     private function addFinderPatternsAndSeparetors()
@@ -84,6 +85,13 @@ class MatrixManager
         }
     }
 
+    private function addTimingPatterns()
+    {
+        for ($i = 0; $i < $this->level->getSize() - 14; $i++) {
+            $this->matrix[6][6 + $i] = ($i + 1) % 2;
+            $this->matrix[6 + $i][6] = ($i + 1) % 2;
+        }
+    }
 
     private function addPattern($pattern, $cornerX = 0, $cornerY = 0)
     {
