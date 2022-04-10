@@ -101,7 +101,8 @@ Level::$LEVEL_1 = new Level(
         ErrorCorrection::$CORRECTION_M->getCorrection() => 10,
         ErrorCorrection::$CORRECTION_Q->getCorrection() => 13,
         ErrorCorrection::$CORRECTION_H->getCorrection() => 17
-    ]
+    ],
+    0
 );
 
 
@@ -189,5 +190,6 @@ Level::$LEVEL_5 = new Level(
         ErrorCorrection::$CORRECTION_M->getCorrection() => 24,
         ErrorCorrection::$CORRECTION_Q->getCorrection() => 18,
         ErrorCorrection::$CORRECTION_H->getCorrection() => 22
-    ]
+    ],
+    7
 );

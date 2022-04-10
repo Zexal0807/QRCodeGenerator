@@ -9,8 +9,9 @@ class Level
     private $characterCountIndicatorLength;
     private $codewords;
     private $errorCorrectionCodewordsForBlock;
+    private $remainderBits;
 
-    public function __construct($level, $maxWidth, $maxHeight, $capacity, $characterCountIndicatorLength, $codewords, $errorCorrectionCodewordsForBlock)
+    public function __construct($level, $maxWidth, $maxHeight, $capacity, $characterCountIndicatorLength, $codewords, $errorCorrectionCodewordsForBlock, $remainderBits)
     {
         $this->level = $level;
         $this->version = intval(substr($level, 6));
@@ -20,6 +21,7 @@ class Level
         $this->characterCountIndicatorLength = $characterCountIndicatorLength;
         $this->codewords = $codewords;
         $this->errorCorrectionCodewordsForBlock = $errorCorrectionCodewordsForBlock;
+        $this->remainderBits = $remainderBits;
     }
 
     public function getLevel()
@@ -62,6 +64,18 @@ class Level
     {
 
         return $this->errorCorrectionCodewordsForBlock[$errorCorrection->getCorrection()];
+    }
+
+    public function getTotalErrorCorrectionCodewords(ErrorCorrection $errorCorrection)
+    {
+        $tmp = $this->codewords[$errorCorrection->getCorrection()];
+        $ecc = $this->getErrorCorrectionCodewordsForBlock($errorCorrection);
+        return $tmp['GROUP_1']['NUMBER_BLOCKS'] * $ecc + $tmp['GROUP_2']['NUMBER_BLOCKS'] * $ecc;
+    }
+
+    public function getRemainderBits()
+    {
+        return $this->remainderBits;
     }
 
     static $LEVEL_1;
