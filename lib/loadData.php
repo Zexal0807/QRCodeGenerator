@@ -21,7 +21,6 @@ ErrorCorrection::$CORRECTION_H = new ErrorCorrection('CORRECTION_H', 0.30);
 Level::$LEVEL_1 = new Level(
     'LEVEL_1',
     21,
-    21,
     [
         Encoding::$ENCODING_NUMERIC->getEncoding() => [
             ErrorCorrection::$CORRECTION_L->getCorrection() => 41,
@@ -109,7 +108,6 @@ Level::$LEVEL_1 = new Level(
 
 Level::$LEVEL_5 = new Level(
     'LEVEL_5',
-    37,
     37,
     [
         Encoding::$ENCODING_NUMERIC->getEncoding() => [

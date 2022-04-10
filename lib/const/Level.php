@@ -3,20 +3,18 @@ class Level
 {
     private $level;
     private $version;
-    private $maxWidth;
-    private $maxHeight;
+    private $size;
     private $capacity;
     private $characterCountIndicatorLength;
     private $codewords;
     private $errorCorrectionCodewordsForBlock;
     private $remainderBits;
 
-    public function __construct($level, $maxWidth, $maxHeight, $capacity, $characterCountIndicatorLength, $codewords, $errorCorrectionCodewordsForBlock, $remainderBits)
+    public function __construct($level, $size, $capacity, $characterCountIndicatorLength, $codewords, $errorCorrectionCodewordsForBlock, $remainderBits)
     {
         $this->level = $level;
         $this->version = intval(substr($level, 6));
-        $this->maxWidth = $maxWidth;
-        $this->maxHeight = $maxHeight;
+        $this->size = $size;
         $this->capacity = $capacity;
         $this->characterCountIndicatorLength = $characterCountIndicatorLength;
         $this->codewords = $codewords;
@@ -32,6 +30,11 @@ class Level
     public function getVersion()
     {
         return $this->version;
+    }
+
+    public function getSize()
+    {
+        return $this->getSize();
     }
 
     public function getCapacity(Encoding $encoding, ErrorCorrection $errorCorrection)
