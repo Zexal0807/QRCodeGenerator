@@ -103,3 +103,91 @@ Level::$LEVEL_1 = new Level(
         ErrorCorrection::$CORRECTION_H->getCorrection() => 17
     ]
 );
+
+
+
+Level::$LEVEL_5 = new Level(
+    'LEVEL_5',
+    37,
+    37,
+    [
+        Encoding::$ENCODING_NUMERIC->getEncoding() => [
+            ErrorCorrection::$CORRECTION_L->getCorrection() => 255,
+            ErrorCorrection::$CORRECTION_M->getCorrection() => 202,
+            ErrorCorrection::$CORRECTION_Q->getCorrection() => 144,
+            ErrorCorrection::$CORRECTION_H->getCorrection() => 106
+        ],
+        Encoding::$ENCODING_ALPHANUMERIC->getEncoding() => [
+            ErrorCorrection::$CORRECTION_L->getCorrection() => 157,
+            ErrorCorrection::$CORRECTION_M->getCorrection() => 122,
+            ErrorCorrection::$CORRECTION_Q->getCorrection() => 87,
+            ErrorCorrection::$CORRECTION_H->getCorrection() => 64
+        ],
+        Encoding::$ENCODING_BYTE->getEncoding() => [
+            ErrorCorrection::$CORRECTION_L->getCorrection() => 106,
+            ErrorCorrection::$CORRECTION_M->getCorrection() => 84,
+            ErrorCorrection::$CORRECTION_Q->getCorrection() => 60,
+            ErrorCorrection::$CORRECTION_H->getCorrection() => 44
+        ],
+        Encoding::$ENCODING_KANJI->getEncoding() => [
+            ErrorCorrection::$CORRECTION_L->getCorrection() => 65,
+            ErrorCorrection::$CORRECTION_M->getCorrection() => 52,
+            ErrorCorrection::$CORRECTION_Q->getCorrection() => 37,
+            ErrorCorrection::$CORRECTION_H->getCorrection() => 27
+        ]
+    ],
+    [
+        Encoding::$ENCODING_NUMERIC->getEncoding() => 10,
+        Encoding::$ENCODING_ALPHANUMERIC->getEncoding() => 9,
+        Encoding::$ENCODING_BYTE->getEncoding() => 8,
+        Encoding::$ENCODING_KANJI->getEncoding() => 8
+    ],
+    [
+        ErrorCorrection::$CORRECTION_L->getCorrection() => [
+            "GROUP_1" => [
+                "NUMBER_BLOCKS" => 1,
+                "BLOCKS_CODEWORDS" => 108
+            ],
+            "GROUP_2" => [
+                "NUMBER_BLOCKS" => 0,
+                "BLOCKS_CODEWORDS" => 0
+            ]
+        ],
+        ErrorCorrection::$CORRECTION_M->getCorrection() => [
+            "GROUP_1" => [
+                "NUMBER_BLOCKS" => 2,
+                "BLOCKS_CODEWORDS" => 43
+            ],
+            "GROUP_2" => [
+                "NUMBER_BLOCKS" => 0,
+                "BLOCKS_CODEWORDS" => 0
+            ]
+        ],
+        ErrorCorrection::$CORRECTION_Q->getCorrection() => [
+            "GROUP_1" => [
+                "NUMBER_BLOCKS" => 2,
+                "BLOCKS_CODEWORDS" => 15
+            ],
+            "GROUP_2" => [
+                "NUMBER_BLOCKS" => 2,
+                "BLOCKS_CODEWORDS" => 16
+            ]
+        ],
+        ErrorCorrection::$CORRECTION_H->getCorrection() => [
+            "GROUP_1" => [
+                "NUMBER_BLOCKS" => 2,
+                "BLOCKS_CODEWORDS" => 11
+            ],
+            "GROUP_2" => [
+                "NUMBER_BLOCKS" => 2,
+                "BLOCKS_CODEWORDS" => 12
+            ]
+        ]
+    ],
+    [
+        ErrorCorrection::$CORRECTION_L->getCorrection() => 26,
+        ErrorCorrection::$CORRECTION_M->getCorrection() => 24,
+        ErrorCorrection::$CORRECTION_Q->getCorrection() => 18,
+        ErrorCorrection::$CORRECTION_H->getCorrection() => 22
+    ]
+);
