@@ -34,7 +34,7 @@ class Level
 
     public function getSize()
     {
-        return $this->getSize();
+        return $this->size;
     }
 
     public function getCapacity(Encoding $encoding, ErrorCorrection $errorCorrection)
