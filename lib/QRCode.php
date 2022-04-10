@@ -11,6 +11,25 @@ class QRCode
 
         $dataCodewords = QRCode::splitCodewords($dataCodewords, $level,  $encoding, $errorCorrection);
 
+        $dataCodewords = [
+            'GROUP_1' => [
+                'BLOCK_1' => [
+                    67, 85, 70, 134, 87, 38, 85, 194, 119, 50, 6, 18, 6, 103, 38
+                ],
+                'BLOCK_2' => [
+                    246, 246, 66, 7, 118, 134, 242, 7, 38, 86, 22, 198, 199, 146, 6
+                ]
+            ],
+            'GROUP_2' => [
+                'BLOCK_1' => [
+                    182, 230, 247, 119, 50, 7, 118, 134, 87, 38, 82, 6, 134, 151, 50, 7
+                ],
+                'BLOCK_2' => [
+                    70, 247, 118, 86, 194, 6, 151, 50, 16, 236, 17, 236, 17, 236, 17, 236
+                ]
+            ]
+        ];
+
         $dataCodewords = QRCode::calcErrorCodewords($dataCodewords, $level,  $errorCorrection);
 
         return $dataCodewords;
