@@ -23,10 +23,10 @@ class MatrixManager
     public function setData($data)
     {
         $this->data = $data;
-        $this->addFinderPatterns();
+        $this->addFinderPatternsAndSeparetors();
     }
 
-    private function addFinderPatterns()
+    private function addFinderPatternsAndSeparetors()
     {
         $pattern = [
             [0, 0, 0, 0, 0, 0, 0, 1],
