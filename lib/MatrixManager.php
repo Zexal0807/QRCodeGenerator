@@ -28,13 +28,50 @@ class MatrixManager
 
     private function addFinderPatterns()
     {
-        $this->matrix[0][0] = 0;
-        $this->matrix[1][1] = 0;
-        $this->matrix[2][2] = 0;
-        $this->matrix[3][3] = 0;
-        $this->matrix[4][4] = 0;
-        $this->matrix[5][5] = 0;
-        $this->matrix[6][6] = 0;
+        $pattern = [
+            [0, 0, 0, 0, 0, 0, 0, 1],
+            [0, 1, 1, 1, 1, 1, 0, 1],
+            [0, 1, 0, 0, 0, 1, 0, 1],
+            [0, 1, 0, 0, 0, 1, 0, 1],
+            [0, 1, 0, 0, 0, 1, 0, 1],
+            [0, 1, 1, 1, 1, 1, 0, 1],
+            [0, 0, 0, 0, 0, 0, 0, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1]
+        ];
+        $this->addPattern($pattern, 0, 0);
+
+        $pattern = [
+            [1, 0, 0, 0, 0, 0, 0, 0],
+            [1, 0, 1, 1, 1, 1, 1, 0],
+            [1, 0, 1, 0, 0, 0, 1, 0],
+            [1, 0, 1, 0, 0, 0, 1, 0],
+            [1, 0, 1, 0, 0, 0, 1, 0],
+            [1, 0, 1, 1, 1, 1, 1, 0],
+            [1, 0, 0, 0, 0, 0, 0, 0],
+            [1, 1, 1, 1, 1, 1, 1, 1]
+        ];
+        $this->addPattern($pattern, $this->level->getSize() - 8, 0);
+
+        $pattern = [
+            [1, 1, 1, 1, 1, 1, 1, 1],
+            [0, 0, 0, 0, 0, 0, 0, 1],
+            [0, 1, 1, 1, 1, 1, 0, 1],
+            [0, 1, 0, 0, 0, 1, 0, 1],
+            [0, 1, 0, 0, 0, 1, 0, 1],
+            [0, 1, 0, 0, 0, 1, 0, 1],
+            [0, 1, 1, 1, 1, 1, 0, 1],
+            [0, 0, 0, 0, 0, 0, 0, 1]
+        ];
+        $this->addPattern($pattern, 0, $this->level->getSize() - 8);
+    }
+
+    private function addPattern($pattern, $cornerX = 0, $cornerY = 0)
+    {
+        for ($i = 0; $i < sizeof($pattern); $i++) {
+            for ($j = 0; $j < sizeof($pattern[0]) || 0; $j++) {
+                $this->matrix[$i + $cornerY][$j + $cornerX] = $pattern[$i][$j];
+            }
+        }
     }
 
     public function printMatrix()
