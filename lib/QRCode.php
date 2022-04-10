@@ -1,6 +1,7 @@
 <?php
 require_once('./lib/loadData.php');
 require_once('./lib/PolynomialDivision.php');
+require_once('./lib/MatrixManager.php');
 
 class QRCode
 {
@@ -40,7 +41,11 @@ class QRCode
         $data = implode("", $data);
         $data = $data . str_repeat("0", $level->getRemainderBits());
 
-        return $data;
+
+        $matrix = new MatrixManager($level);
+        $matrix->setData($data);
+
+        return $matrix;
     }
 
     private static function interleavedCodeword($dataCodewords, Level $level, ErrorCorrection $errorCorrection)
