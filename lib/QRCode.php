@@ -32,7 +32,85 @@ class QRCode
 
         $dataCodewords = QRCode::calcErrorCodewords($dataCodewords, $level,  $errorCorrection);
 
-        return $dataCodewords;
+        $data = QRCode::interleavedCodeword($dataCodewords, $level, $errorCorrection);
+
+        $data = array_map(function ($el) {
+            return sprintf("%08b", $el);
+        }, $data);
+        $data = implode("", $data);
+        $data = $data . str_repeat("0", $level->getRemainderBits());
+
+        return $data;
+    }
+
+    private static function interleavedCodeword($dataCodewords, Level $level, ErrorCorrection $errorCorrection)
+    {
+        $groups = [
+            'BLOCK' => [],
+            'EC' => []
+        ];
+
+        for ($i = 1; $i <= $level->getBlocksInGroup(1, $errorCorrection); $i++) {
+            array_push($groups['BLOCK'], $dataCodewords['GROUP_1']['BLOCK_' . $i]);
+            array_push($groups['EC'], $dataCodewords['GROUP_1']['BLOCK_' . $i . '_EC']);
+        }
+        for ($i = 1; $i <= $level->getBlocksInGroup(2, $errorCorrection); $i++) {
+            array_push($groups['BLOCK'], $dataCodewords['GROUP_2']['BLOCK_' . $i]);
+            array_push($groups['EC'], $dataCodewords['GROUP_2']['BLOCK_' . $i . '_EC']);
+        }
+
+
+        $data = [];
+
+        $col = 0;
+        $block = 0;
+        $maxBlock = sizeof($groups['BLOCK']);
+
+        $dc = $level->getTotalDataCodewords($errorCorrection);
+
+        for ($i = 0; $i < $dc; $i++) {
+            if (isset($groups['BLOCK'][$block][$col])) {
+                array_push(
+                    $data,
+                    $groups['BLOCK'][$block][$col]
+                );
+            } else {
+                $i--;
+            }
+
+            $block++;
+
+            if ($block == $maxBlock) {
+                $block = 0;
+                $col++;
+            }
+        }
+
+        $col = 0;
+        $block = 0;
+        $maxBlock = sizeof($groups['EC']);
+
+        $ecc = $level->getTotalErrorCorrectionCodewords($errorCorrection);
+
+        for ($i = 0; $i < $ecc; $i++) {
+            if (isset($groups['EC'][$block][$col])) {
+                array_push(
+                    $data,
+                    $groups['EC'][$block][$col]
+                );
+            } else {
+                $i--;
+            }
+
+            $block++;
+
+            if ($block == $maxBlock) {
+                $block = 0;
+                $col++;
+            }
+        }
+
+        return $data;
     }
 
     private static function calcErrorCodewords($groups, Level $level, ErrorCorrection $errorCorrection)
@@ -40,7 +118,7 @@ class QRCode
         for ($i = 1; $i <= $level->getBlocksInGroup(1, $errorCorrection); $i++) {
             $groups['GROUP_1']['BLOCK_' . $i . "_EC"] = QRCode::calcErrorCodewordsInBlock($groups['GROUP_1']['BLOCK_' . $i], $level->getErrorCorrectionCodewordsForBlock($errorCorrection));
         }
-        for ($i = 1; $i < $level->getBlocksInGroup(2, $errorCorrection); $i++) {
+        for ($i = 1; $i <= $level->getBlocksInGroup(2, $errorCorrection); $i++) {
             $groups['GROUP_2']['BLOCK_' . $i . "_EC"] = QRCode::calcErrorCodewordsInBlock($groups['GROUP_2']['BLOCK_' . $i], $level->getErrorCorrectionCodewordsForBlock($errorCorrection));
         }
         return $groups;
@@ -66,7 +144,7 @@ class QRCode
                 array_push($groups['GROUP_1']['BLOCK_' . $i], bindec(array_pop($dataCodewords)));
             }
         }
-        for ($i = 1; $i < $level->getBlocksInGroup(2, $errorCorrection); $i++) {
+        for ($i = 1; $i <= $level->getBlocksInGroup(2, $errorCorrection); $i++) {
             $groups['GROUP_2']['BLOCK_' . $i] = [];
             for ($j = 1; $j <= $level->getBlocksSizeInGroup(2, $errorCorrection); $j++) {
                 array_push($groups['GROUP_1']['BLOCK_' . $i], bindec(array_pop($dataCodewords)));
