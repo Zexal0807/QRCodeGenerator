@@ -1,10 +1,10 @@
 <head>
     <style>
-        td[color="0"] {
+        td[color="1"] {
             background-color: black;
         }
 
-        td[color="1"] {
+        td[color="0"] {
             background-color: white;
         }
 
