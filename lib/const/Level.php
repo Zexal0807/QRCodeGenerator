@@ -9,8 +9,9 @@ class Level
     private $codewords;
     private $errorCorrectionCodewordsForBlock;
     private $remainderBits;
+    private $alignmentPatternCenters;
 
-    public function __construct($level, $size, $capacity, $characterCountIndicatorLength, $codewords, $errorCorrectionCodewordsForBlock, $remainderBits)
+    public function __construct($level, $size, $capacity, $characterCountIndicatorLength, $codewords, $errorCorrectionCodewordsForBlock, $remainderBits, $alignmentPatternCenters)
     {
         $this->level = $level;
         $this->version = intval(substr($level, 6));
@@ -20,6 +21,7 @@ class Level
         $this->codewords = $codewords;
         $this->errorCorrectionCodewordsForBlock = $errorCorrectionCodewordsForBlock;
         $this->remainderBits = $remainderBits;
+        $this->alignmentPatternCenters = $alignmentPatternCenters;
     }
 
     public function getLevel()
@@ -79,6 +81,11 @@ class Level
     public function getRemainderBits()
     {
         return $this->remainderBits;
+    }
+
+    public function getAlignmentPatternCenter()
+    {
+        return $this->alignmentPatternCenters;
     }
 
     static $LEVEL_1;
