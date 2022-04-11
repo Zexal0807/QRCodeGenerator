@@ -1,11 +1,22 @@
 <head>
     <style>
-        td[color="1"] {
+        td[color="F1"],
+        td[color="1"],
+        td[color="A1"],
+        td[color="T1"],
+        td[color="D"] {
             background-color: black;
         }
 
-        td[color="0"] {
+        td[color="F0"],
+        td[color="0"],
+        td[color="A0"],
+        td[color="T0"] {
             background-color: white;
+        }
+
+        td[color="R"] {
+            background-color: blue;
         }
 
         td {

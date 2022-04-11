@@ -38,35 +38,36 @@ class MatrixManager
     private function addFinderPatterns()
     {
         $pattern = [
-            [1, 1, 1, 1, 1, 1, 1],
-            [1, 0, 0, 0, 0, 0, 1],
-            [1, 0, 1, 1, 1, 0, 1],
-            [1, 0, 1, 1, 1, 0, 1],
-            [1, 0, 1, 1, 1, 0, 1],
-            [1, 0, 0, 0, 0, 0, 1],
-            [1, 1, 1, 1, 1, 1, 1]
+            ["F1", "F1", "F1", "F1", "F1", "F1", "F1"],
+            ["F1", "F0", "F0", "F0", "F0", "F0", "F1"],
+            ["F1", "F0", "F1", "F1", "F1", "F0", "F1"],
+            ["F1", "F0", "F1", "F1", "F1", "F0", "F1"],
+            ["F1", "F0", "F1", "F1", "F1", "F0", "F1"],
+            ["F1", "F0", "F0", "F0", "F0", "F0", "F1"],
+            ["F1", "F1", "F1", "F1", "F1", "F1", "F1"]
         ];
         $this->addPattern($pattern, 0, 0);
 
         $pattern = [
-            [1, 1, 1, 1, 1, 1, 1],
-            [1, 0, 0, 0, 0, 0, 1],
-            [1, 0, 1, 1, 1, 0, 1],
-            [1, 0, 1, 1, 1, 0, 1],
-            [1, 0, 1, 1, 1, 0, 1],
-            [1, 0, 0, 0, 0, 0, 1],
-            [1, 1, 1, 1, 1, 1, 1]
+            ["F1", "F1", "F1", "F1", "F1", "F1", "F1"],
+            ["F1", "F0", "F0", "F0", "F0", "F0", "F1"],
+            ["F1", "F0", "F1", "F1", "F1", "F0", "F1"],
+            ["F1", "F0", "F1", "F1", "F1", "F0", "F1"],
+            ["F1", "F0", "F1", "F1", "F1", "F0", "F1"],
+            ["F1", "F0", "F0", "F0", "F0", "F0", "F1"],
+            ["F1", "F1", "F1", "F1", "F1", "F1", "F1"]
         ];
+
         $this->addPattern($pattern, $this->level->getSize() - 7, 0);
 
         $pattern = [
-            [1, 1, 1, 1, 1, 1, 1],
-            [1, 0, 0, 0, 0, 0, 1],
-            [1, 0, 1, 1, 1, 0, 1],
-            [1, 0, 1, 1, 1, 0, 1],
-            [1, 0, 1, 1, 1, 0, 1],
-            [1, 0, 0, 0, 0, 0, 1],
-            [1, 1, 1, 1, 1, 1, 1]
+            ["F1", "F1", "F1", "F1", "F1", "F1", "F1"],
+            ["F1", "F0", "F0", "F0", "F0", "F0", "F1"],
+            ["F1", "F0", "F1", "F1", "F1", "F0", "F1"],
+            ["F1", "F0", "F1", "F1", "F1", "F0", "F1"],
+            ["F1", "F0", "F1", "F1", "F1", "F0", "F1"],
+            ["F1", "F0", "F0", "F0", "F0", "F0", "F1"],
+            ["F1", "F1", "F1", "F1", "F1", "F1", "F1"]
         ];
         $this->addPattern($pattern, 0, $this->level->getSize() - 7);
     }
@@ -99,11 +100,11 @@ class MatrixManager
     private function addAlignmentPatterns()
     {
         $pattern = [
-            [1, 1, 1, 1, 1],
-            [1, 0, 0, 0, 1],
-            [1, 0, 1, 0, 1],
-            [1, 0, 0, 0, 1],
-            [1, 1, 1, 1, 1]
+            ["A1", "A1", "A1", "A1", "A1"],
+            ["A1", "A0", "A0", "A0", "A1"],
+            ["A1", "A0", "A1", "A0", "A1"],
+            ["A1", "A0", "A0", "A0", "A1"],
+            ["A1", "A1", "A1", "A1", "A1"]
         ];
 
         foreach ($this->level->getAlignmentPatternCenter() as $center) {
@@ -113,15 +114,15 @@ class MatrixManager
 
     private function addTimingPatterns()
     {
-        for ($i = 0; $i < $this->level->getSize() - 14; $i++) {
-            $this->matrix[6][6 + $i] = ($i + 1) % 2;
-            $this->matrix[6 + $i][6] = ($i + 1) % 2;
+        for ($i = 0; $i < $this->level->getSize() - 16; $i++) {
+            $this->matrix[6][6 + $i + 2] = "T" . ($i + 1) % 2;
+            $this->matrix[6 + $i + 2][6] = "T" . ($i + 1) % 2;
         }
     }
 
     private function addDarkModule()
     {
-        $this->matrix[$this->level->getSize() - 8][8] = 1;
+        $this->matrix[$this->level->getSize() - 8][8] = "D";
     }
 
     private function addReservedFormatInformationArea()
