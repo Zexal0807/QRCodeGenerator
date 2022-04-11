@@ -26,48 +26,73 @@ class MatrixManager
     {
         $this->data = $data;
         $this->resetMatrix();
-        $this->addFinderPatternsAndSeparetors();
+        $this->addFinderPatterns();
+        $this->addSeparetors();
         $this->addAlignmentPatterns();
         $this->addTimingPatterns();
         $this->addDarkModule();
+        $this->addReservedFormatInformationArea();
+        $this->addReserveVersionInfomationArea();
     }
 
-    private function addFinderPatternsAndSeparetors()
+    private function addFinderPatterns()
     {
         $pattern = [
-            [1, 1, 1, 1, 1, 1, 1, 0],
-            [1, 0, 0, 0, 0, 0, 1, 0],
-            [1, 0, 1, 1, 1, 0, 1, 0],
-            [1, 0, 1, 1, 1, 0, 1, 0],
-            [1, 0, 1, 1, 1, 0, 1, 0],
-            [1, 0, 0, 0, 0, 0, 1, 0],
-            [1, 1, 1, 1, 1, 1, 1, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0]
+            [1, 1, 1, 1, 1, 1, 1],
+            [1, 0, 0, 0, 0, 0, 1],
+            [1, 0, 1, 1, 1, 0, 1],
+            [1, 0, 1, 1, 1, 0, 1],
+            [1, 0, 1, 1, 1, 0, 1],
+            [1, 0, 0, 0, 0, 0, 1],
+            [1, 1, 1, 1, 1, 1, 1]
         ];
         $this->addPattern($pattern, 0, 0);
 
         $pattern = [
-            [0, 1, 1, 1, 1, 1, 1, 1],
-            [0, 1, 0, 0, 0, 0, 0, 1],
-            [0, 1, 0, 1, 1, 1, 0, 1],
-            [0, 1, 0, 1, 1, 1, 0, 1],
-            [0, 1, 0, 1, 1, 1, 0, 1],
-            [0, 1, 0, 0, 0, 0, 0, 1],
-            [0, 1, 1, 1, 1, 1, 1, 1],
-            [0, 0, 0, 0, 0, 0, 0, 0]
+            [1, 1, 1, 1, 1, 1, 1],
+            [1, 0, 0, 0, 0, 0, 1],
+            [1, 0, 1, 1, 1, 0, 1],
+            [1, 0, 1, 1, 1, 0, 1],
+            [1, 0, 1, 1, 1, 0, 1],
+            [1, 0, 0, 0, 0, 0, 1],
+            [1, 1, 1, 1, 1, 1, 1]
         ];
-        $this->addPattern($pattern, $this->level->getSize() - 8, 0);
+        $this->addPattern($pattern, $this->level->getSize() - 7, 0);
 
         $pattern = [
-            [0, 0, 0, 0, 0, 0, 0, 0],
-            [1, 1, 1, 1, 1, 1, 1, 0],
-            [1, 0, 0, 0, 0, 0, 1, 0],
-            [1, 0, 1, 1, 1, 0, 1, 0],
-            [1, 0, 1, 1, 1, 0, 1, 0],
-            [1, 0, 1, 1, 1, 0, 1, 0],
-            [1, 0, 0, 0, 0, 0, 1, 0],
-            [1, 1, 1, 1, 1, 1, 1, 0]
+            [1, 1, 1, 1, 1, 1, 1],
+            [1, 0, 0, 0, 0, 0, 1],
+            [1, 0, 1, 1, 1, 0, 1],
+            [1, 0, 1, 1, 1, 0, 1],
+            [1, 0, 1, 1, 1, 0, 1],
+            [1, 0, 0, 0, 0, 0, 1],
+            [1, 1, 1, 1, 1, 1, 1]
         ];
+        $this->addPattern($pattern, 0, $this->level->getSize() - 7);
+    }
+
+    private function addSeparetors()
+    {
+        $pattern = [
+            [0],
+            [0],
+            [0],
+            [0],
+            [0],
+            [0],
+            [0],
+            [0]
+        ];
+        $this->addPattern($pattern, 7, 0);
+        $this->addPattern($pattern, $this->level->getSize() - 8, 0);
+        $this->addPattern($pattern, 7, $this->level->getSize() - 8);
+
+
+        $pattern = [
+            [0, 0, 0, 0, 0, 0, 0, 0]
+        ];
+        $this->addPattern($pattern, 0, 7);
+        $this->addPattern($pattern, $this->level->getSize() - 8, 7);
         $this->addPattern($pattern, 0, $this->level->getSize() - 8);
     }
 
@@ -99,12 +124,61 @@ class MatrixManager
         $this->matrix[$this->level->getSize() - 8][8] = 1;
     }
 
+    private function addReservedFormatInformationArea()
+    {
+        $pattern = [
+            ["R"],
+            ["R"],
+            ["R"],
+            ["R"],
+            ["R"],
+            ["R"],
+            ["R"],
+            ["R"]
+        ];
+        $this->addPattern($pattern, 8, 0);
+        $this->addPattern($pattern, 8, $this->level->getSize() - 8);
+
+        $this->matrix[8][8] = "R";
+
+        $pattern = [
+            ["R", "R", "R", "R", "R", "R", "R", "R"]
+        ];
+        $this->addPattern($pattern, $this->level->getSize() - 8, 8);
+        $this->addPattern($pattern, 0, 8);
+    }
+
+    private function addReserveVersionInfomationArea()
+    {
+        if ($this->level->getSize() < Level::$LEVEL_7->getSize()) {
+            return;
+        }
+
+        $pattern = [
+            ["R", "R", "R"],
+            ["R", "R", "R"],
+            ["R", "R", "R"],
+            ["R", "R", "R"],
+            ["R", "R", "R"],
+            ["R", "R", "R"]
+        ];
+        $this->addPattern($pattern, $this->level->getSize() - 10, 0);
+
+        $pattern = [
+            ["R", "R", "R", "R", "R", "R"],
+            ["R", "R", "R", "R", "R", "R"],
+            ["R", "R", "R", "R", "R", "R"]
+        ];
+        $this->addPattern($pattern, 0, $this->level->getSize() - 10);
+    }
 
     private function addPattern($pattern, $cornerX = 0, $cornerY = 0)
     {
         for ($i = 0; $i < sizeof($pattern); $i++) {
             for ($j = 0; $j < sizeof($pattern[0]) || 0; $j++) {
-                $this->matrix[$i + $cornerY][$j + $cornerX] = $pattern[$i][$j];
+                if (!isset($this->matrix[$i + $cornerY][$j + $cornerX])) {
+                    $this->matrix[$i + $cornerY][$j + $cornerX] = $pattern[$i][$j];
+                }
             }
         }
     }
