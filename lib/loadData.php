@@ -195,3 +195,14 @@ Level::$LEVEL_5 = new Level(
         [30, 30]
     ]
 );
+
+Level::$LEVEL_7 = new Level(
+    'LEVEL_7',
+    45,
+    [],
+    [],
+    [],
+    [],
+    7,
+    []
+);
