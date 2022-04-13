@@ -156,20 +156,22 @@ class MatrixManager
             return;
         }
 
+        $data = $this->level->getVersionInformationString();
+
         $pattern = [
-            ["R", "R", "R"],
-            ["R", "R", "R"],
-            ["R", "R", "R"],
-            ["R", "R", "R"],
-            ["R", "R", "R"],
-            ["R", "R", "R"]
+            ["R" . $data[17], "R" . $data[16], "R" . $data[15]],
+            ["R" . $data[14], "R" . $data[13], "R" . $data[12]],
+            ["R" . $data[11], "R" . $data[10], "R" . $data[9]],
+            ["R" . $data[8], "R" . $data[7], "R" . $data[6]],
+            ["R" . $data[5], "R" . $data[4], "R" . $data[3]],
+            ["R" . $data[2], "R" . $data[1], "R" . $data[0]]
         ];
         $this->addPattern($pattern, $this->level->getSize() - 10, 0);
 
         $pattern = [
-            ["R", "R", "R", "R", "R", "R"],
-            ["R", "R", "R", "R", "R", "R"],
-            ["R", "R", "R", "R", "R", "R"]
+            ["R" . $data[17], "R" . $data[14], "R" . $data[11], "R" . $data[8], "R" . $data[5], "R" . $data[2]],
+            ["R" . $data[16], "R" . $data[13], "R" . $data[10], "R" . $data[7], "R" . $data[4], "R" . $data[1]],
+            ["R" . $data[15], "R" . $data[12], "R" . $data[9], "R" . $data[6], "R" . $data[3], "R" . $data[0]]
         ];
         $this->addPattern($pattern, 0, $this->level->getSize() - 10);
     }
@@ -184,7 +186,7 @@ class MatrixManager
 
         $i = 0;
 
-        while ($i < $this->data) {
+        while ($i < strlen($this->data)) {
 
             // check is free
             $free = false;
