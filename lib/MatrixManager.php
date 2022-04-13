@@ -33,6 +33,7 @@ class MatrixManager
         $this->addDarkModule();
         $this->addReservedFormatInformationArea();
         $this->addReserveVersionInfomationArea();
+        $this->addDataBits();
     }
 
     private function addFinderPatterns()
@@ -171,6 +172,87 @@ class MatrixManager
             ["R", "R", "R", "R", "R", "R"]
         ];
         $this->addPattern($pattern, 0, $this->level->getSize() - 10);
+    }
+
+    private function addDataBits()
+    {
+        $x = $this->level->getSize() - 1;
+        $y = $this->level->getSize() - 1;
+
+        $dir = "UP";
+        $step = "LEFT";
+
+        $i = 0;
+
+        while ($i < $this->data) {
+
+            // check is free
+            $free = false;
+            if (!isset($this->matrix[$y][$x])) {
+                $free = true;
+            }
+            if ($free) {
+                $this->matrix[$y][$x] = $this->data[$i];
+                // $this->matrix[$y][$x] = $i;
+                $i++;
+            }
+
+            //calc next
+            if ($x == 6) {
+                $x--;
+            }
+            if ($dir == "UP") {
+                switch ($step) {
+                    case "LEFT":
+                        $x--;
+                        $step = "UP-RIGHT";
+                        break;
+                    case "UP-RIGHT":
+                        if ($y == 0) {
+                            $step = "DOUBLE-LEFT";
+                        } else {
+                            $x++;
+                            $y--;
+                            $step = "LEFT";
+                        }
+                        break;
+                    case "DOUBLE-LEFT":
+                        $x--;
+                        $step = "SINGLE-LEFT";
+                        break;
+                    case "SINGLE-LEFT":
+                        $x--;
+                        $dir = "DOWN";
+                        $step = "RIGHT";
+                        break;
+                }
+            } else {
+                switch ($step) {
+                    case "RIGHT":
+                        $x++;
+                        $y++;
+                        $step = "DOWN-LEFT";
+                        break;
+                    case "DOWN-LEFT":
+                        if ($y == $this->level->getSize() - 1) {
+                            $step = "DOUBLE-RIGHT";
+                        } else {
+                            $x--;
+                            $step = "RIGHT";
+                        }
+                        break;
+                    case "DOUBLE-RIGHT":
+                        $x--;
+                        $step = "SINGLE-RIGHT";
+                        break;
+                    case "SINGLE-RIGHT":
+                        $x--;
+                        $dir = "UP";
+                        $step = "LEFT";
+                        break;
+                }
+            }
+        }
     }
 
     private function addPattern($pattern, $cornerX = 0, $cornerY = 0)

@@ -12,6 +12,7 @@ class QRCode
 
         $dataCodewords = QRCode::splitCodewords($dataCodewords, $level,  $encoding, $errorCorrection);
 
+        /*
         $dataCodewords = [
             'GROUP_1' => [
                 'BLOCK_1' => [
@@ -29,8 +30,7 @@ class QRCode
                     70, 247, 118, 86, 194, 6, 151, 50, 16, 236, 17, 236, 17, 236, 17, 236
                 ]
             ]
-        ];
-
+        ];*/
         $dataCodewords = QRCode::calcErrorCodewords($dataCodewords, $level,  $errorCorrection);
 
         $data = QRCode::interleavedCodeword($dataCodewords, $level, $errorCorrection);
@@ -63,7 +63,6 @@ class QRCode
             array_push($groups['BLOCK'], $dataCodewords['GROUP_2']['BLOCK_' . $i]);
             array_push($groups['EC'], $dataCodewords['GROUP_2']['BLOCK_' . $i . '_EC']);
         }
-
 
         $data = [];
 
