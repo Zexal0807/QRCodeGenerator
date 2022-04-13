@@ -88,6 +88,16 @@ class Level
         return $this->alignmentPatternCenters;
     }
 
+    public function getVersionInformationString()
+    {
+        return Level::$versionInformationString[$this->level] || "";
+    }
+
+    // TODO: Add from https://www.thonky.com/qr-code-tutorial/format-version-tables
+    private static $versionInformationString = [
+        'LEVEL_7' => "000111110010010100"
+    ];
+
     static $LEVEL_1;
     static $LEVEL_2;
     static $LEVEL_3;
