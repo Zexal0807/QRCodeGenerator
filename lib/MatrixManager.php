@@ -3,7 +3,7 @@ class MatrixManager
 {
     private $data;
     private $level;
-    private $matrix;
+    public $matrix;
 
     public function __construct(Level $level)
     {
@@ -20,6 +20,11 @@ class MatrixManager
                 $this->matrix[$i][$j] = NULL;
             }
         }
+    }
+
+    public function getMatrix()
+    {
+        return $this->matrix;
     }
 
     public function setData($data)
@@ -76,14 +81,14 @@ class MatrixManager
     private function addSeparetors()
     {
         $pattern = [
-            [0],
-            [0],
-            [0],
-            [0],
-            [0],
-            [0],
-            [0],
-            [0]
+            ["S0"],
+            ["S0"],
+            ["S0"],
+            ["S0"],
+            ["S0"],
+            ["S0"],
+            ["S0"],
+            ["S0"]
         ];
         $this->addPattern($pattern, 7, 0);
         $this->addPattern($pattern, $this->level->getSize() - 8, 0);
@@ -91,7 +96,7 @@ class MatrixManager
 
 
         $pattern = [
-            [0, 0, 0, 0, 0, 0, 0, 0]
+            ["S0", "S0", "S0", "S0", "S0", "S0", "S0", "S0"]
         ];
         $this->addPattern($pattern, 0, 7);
         $this->addPattern($pattern, $this->level->getSize() - 8, 7);
@@ -195,7 +200,7 @@ class MatrixManager
             }
             if ($free) {
                 $this->matrix[$y][$x] = $this->data[$i];
-                // $this->matrix[$y][$x] = $i;
+                //$this->matrix[$y][$x] = $i;
                 $i++;
             }
 
@@ -266,19 +271,5 @@ class MatrixManager
                 }
             }
         }
-    }
-
-    public function printMatrix()
-    {
-        $html = "<table>";
-        for ($i = 0; $i < $this->level->getSize(); $i++) {
-            $html .= "<tr>";
-            for ($j = 0; $j < $this->level->getSize(); $j++) {
-                $html .= '<td color="' . $this->matrix[$i][$j] . '"></td>';
-            }
-            $html .= "</tr>";
-        }
-        $html .= "</table>";
-        return $html;
     }
 }
