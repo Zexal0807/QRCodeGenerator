@@ -49,8 +49,8 @@
         }
 
         table {
-            width: 250;
-            height: 250;
+            width: 500;
+            height: 500;
             margin: 15px;
             /* border: 1px solid black; */
             border-collapse: collapse;
@@ -72,15 +72,25 @@ $errorCorrection = ErrorCorrection::$CORRECTION_Q;
 
 //$level =  QRCode::findBestLevel($data, $encoding, $errorCorrection);
 
-$matrixs = QRCode::generate($data, $level, $encoding, $errorCorrection);
+$matrix = QRCode::generate($data, $level, $encoding, $errorCorrection);
 
 function printMatrix($matrix)
 {
+    $logo = 9;
     $html = "<table>";
     for ($i = 0; $i < sizeof($matrix); $i++) {
         $html .= "<tr>";
         for ($j = 0; $j < sizeof($matrix); $j++) {
-            $html .= '<td color="' . $matrix[$i][$j] . '"></td>';
+            if (
+                $j > (sizeof($matrix) - $logo) / 2 - 1 &&
+                $j < (sizeof($matrix) - $logo) / 2 + $logo  &&
+                $i > (sizeof($matrix) - $logo) / 2 - 1 &&
+                $i < (sizeof($matrix) - $logo) / 2 + $logo && false
+            ) {
+                $html .= '<td color="R"></td>';
+            } else {
+                $html .= '<td color="' . $matrix[$i][$j] . '"></td>';
+            }
         }
         $html .= "</tr>";
     }
@@ -88,9 +98,7 @@ function printMatrix($matrix)
     return $html;
 }
 echo "<div>";
-foreach ($matrixs as $m) {
-    echo printMatrix($m);
-}
+echo printMatrix($matrix);
 
 
 //https://www.thonky.com/qr-code-tutorial/module-placement-matrix

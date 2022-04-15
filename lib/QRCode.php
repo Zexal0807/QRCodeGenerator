@@ -27,8 +27,8 @@ class QRCode
         $matrix->setData($data);
         $matrix = $matrix->getMatrix();
 
-        $matrixs = MaskerMaker::generate($errorCorrection, $matrix);
-        return $matrixs;
+        $matrix = MaskerMaker::generate($errorCorrection, $matrix);
+        return $matrix;
     }
 
     private static function interleavedCodeword($dataCodewords, Level $level, ErrorCorrection $errorCorrection)

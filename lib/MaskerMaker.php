@@ -8,8 +8,176 @@ class MaskerMaker
         for ($i = 0; $i < 8; $i++) {
             $matrixs[$i] = MaskerMaker::generateMatrix($i, $errorCorrection, $data);
         }
-        $matrixs[8] = $data;
-        return $matrixs;
+        //$matrixs[8] = $data;
+
+        $penalty = [0, 0, 0, 0, 0, 0, 0, 0];
+
+        for ($i = 0; $i < 8; $i++) {
+            $penalty[$i] = MaskerMaker::calcPenalty($matrixs[$i]);
+        }
+        $min = 0;
+        for ($i = 1; $i < 8; $i++) {
+            if ($penalty[$i] < $penalty[$min]) {
+                $min = $i;
+            }
+        }
+
+        return $matrixs[$min];
+    }
+
+    private static function color($cell)
+    {
+        if ($cell == "D")
+            return "1";
+        if (strlen($cell) == 1)
+            return $cell;
+        return substr($cell, -1);
+    }
+
+    private static function calcPenalty($matrix)
+    {
+        $penalty = 0;
+
+        //penalty for each group of five or more same-colored modules in a row (or column)
+        $counter = 1;
+        $color = NULL;
+        for ($x = 0; $x < sizeof($matrix); $x++) {
+            $counter = 1;
+            $color = NULL;
+            for ($y = 0; $y < sizeof($matrix); $y++) {
+                $value = MaskerMaker::color($matrix[$x][$y]);
+                if ($color == $value) {
+                    $counter++;
+                } else {
+                    if ($counter >= 5) {
+                        $penalty += $counter - 5 + 3;
+                    }
+                    $counter = 1;
+                    $color = $value;
+                }
+            }
+            if ($counter >= 5) {
+                $penalty += $counter - 5 + 3;
+            }
+        }
+
+        $counter = 1;
+        $color = NULL;
+        for ($x = 0; $x < sizeof($matrix); $x++) {
+            $counter = 1;
+            $color = NULL;
+            for ($y = 0; $y < sizeof($matrix); $y++) {
+                $value = MaskerMaker::color($matrix[$y][$x]);
+                if ($color == $value) {
+                    $counter++;
+                } else {
+                    if ($counter >= 5) {
+                        $penalty += $counter - 5 + 3;
+                    }
+                    $counter = 1;
+                    $color = $value;
+                }
+            }
+            if ($counter >= 5) {
+                $penalty += $counter - 5 + 3;
+            }
+        }
+
+
+        //penalty for each 2x2 area of same-colored modules in the matrix
+        for ($x = 0; $x < sizeof($matrix) - 1; $x++) {
+            for ($y = 0; $y < sizeof($matrix) - 1; $y++) {
+                $nw = MaskerMaker::color($matrix[$x][$y]);
+                $ne = MaskerMaker::color($matrix[$x + 1][$y]);
+                $sw = MaskerMaker::color($matrix[$x][$y + 1]);
+                $se = MaskerMaker::color($matrix[$x + 1][$y + 1]);
+
+                if ($nw == $ne && $nw == $sw && $nw == $se) {
+                    $penalty += 3;
+                }
+            }
+        }
+
+
+        // large penalty if there are patterns that look similar to the finder patterns
+        $pattern = ["1", "0", "1", "1", "1", "0", "1", "0", "0", "0", "0"];
+        for ($x = 0; $x < sizeof($matrix) - sizeof($pattern); $x++) {
+            for ($y = 0; $y < sizeof($matrix) - sizeof($pattern); $y++) {
+                $find = true;
+                for ($k = 0; $k < sizeof($pattern) && $find; $k++) {
+                    if (MaskerMaker::color($matrix[$x][$y]) != $pattern[$k]) {
+                        $find = false;
+                    }
+                }
+                if ($find) {
+                    $penalty += 40;
+                }
+            }
+        }
+        for ($x = 0; $x < sizeof($matrix) - sizeof($pattern); $x++) {
+            for ($y = 0; $y < sizeof($matrix) - sizeof($pattern); $y++) {
+                $find = true;
+                for ($k = 0; $k < sizeof($pattern) && $find; $k++) {
+                    if (MaskerMaker::color($matrix[$y][$x]) != $pattern[$k]) {
+                        $find = false;
+                    }
+                }
+                if ($find) {
+                    $penalty += 40;
+                }
+            }
+        }
+
+        $pattern = ["0", "0", "0", "0", "1", "0", "1", "1", "1", "0", "1"];
+        for ($x = 0; $x < sizeof($matrix) - sizeof($pattern); $x++) {
+            for ($y = 0; $y < sizeof($matrix) - sizeof($pattern); $y++) {
+                $find = true;
+                for ($k = 0; $k < sizeof($pattern) && $find; $k++) {
+                    if (MaskerMaker::color($matrix[$x][$y]) != $pattern[$k]) {
+                        $find = false;
+                    }
+                }
+                if ($find) {
+                    $penalty += 40;
+                }
+            }
+        }
+        for ($x = 0; $x < sizeof($matrix) - sizeof($pattern); $x++) {
+            for ($y = 0; $y < sizeof($matrix) - sizeof($pattern); $y++) {
+                $find = true;
+                for ($k = 0; $k < sizeof($pattern) && $find; $k++) {
+                    if (MaskerMaker::color($matrix[$y][$x]) != $pattern[$k]) {
+                        $find = false;
+                    }
+                }
+                if ($find) {
+                    $penalty += 40;
+                }
+            }
+        }
+
+
+        //penalty if more than half of the modules are dark or light, with a larger penalty for a larger difference
+        $b = 0;
+        $w = 0;
+        for ($x = 0; $x < sizeof($matrix); $x++) {
+            for ($y = 0; $y < sizeof($matrix); $y++) {
+                if (MaskerMaker::color($matrix[$x][$y]) == "0") {
+                    $w++;
+                } else {
+                    $b++;
+                }
+            }
+        }
+
+        $pe = $b / ($b + $w) * 100;
+
+        $prev = intval($pe / 5) * 5;
+        $next = intval($pe / 5 + 1) * 5;
+
+        $penalty += min(abs($prev - 50) / 5, abs($next - 50) / 5) * 10;
+
+        return $penalty;
     }
 
     private static function generateMatrix($mask, ErrorCorrection $errorCorrection, $data)
