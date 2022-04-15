@@ -11,26 +11,9 @@ class QRCode
     {
         $dataCodewords = QRCode::encode($data, $level,  $encoding, $errorCorrection);
 
-
         $dataCodewords = QRCode::splitCodewords($dataCodewords, $level,  $encoding, $errorCorrection);
 
-
-        //TODO: DUCK è giusto ma sono invertiti - FUCK
-        $dataCodewords = [
-            'GROUP_1' => [
-                'BLOCK_1' => [
-                    32, 91, 11, 120, 209, 114, 220, 77, 67, 64, 236, 17, 236
-                ]
-            ],
-            'GROUP_2' => [
-                'BLOCK_1' => [],
-                'BLOCK_2' => []
-            ]
-        ];
-
         $dataCodewords = QRCode::calcErrorCodewords($dataCodewords, $level,  $errorCorrection);
-
-        d_var_dump($dataCodewords);
 
         $data = QRCode::interleavedCodeword($dataCodewords, $level, $errorCorrection);
 
@@ -142,16 +125,20 @@ class QRCode
             "GROUP_2" => []
         ];
 
+        $counter = 0;
+
         for ($i = 1; $i <= $level->getBlocksInGroup(1, $errorCorrection); $i++) {
             $groups['GROUP_1']['BLOCK_' . $i] = [];
             for ($j = 1; $j <= $level->getBlocksSizeInGroup(1, $errorCorrection); $j++) {
-                array_push($groups['GROUP_1']['BLOCK_' . $i], bindec(array_pop($dataCodewords)));
+                array_push($groups['GROUP_1']['BLOCK_' . $i], bindec($dataCodewords[$counter]));
+                $counter++;
             }
         }
         for ($i = 1; $i <= $level->getBlocksInGroup(2, $errorCorrection); $i++) {
             $groups['GROUP_2']['BLOCK_' . $i] = [];
             for ($j = 1; $j <= $level->getBlocksSizeInGroup(2, $errorCorrection); $j++) {
-                array_push($groups['GROUP_1']['BLOCK_' . $i], bindec(array_pop($dataCodewords)));
+                array_push($groups['GROUP_2']['BLOCK_' . $i], bindec($dataCodewords[$counter]));
+                $counter++;
             }
         }
 
