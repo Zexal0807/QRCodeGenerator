@@ -45,13 +45,14 @@
 
         div {
             display: flex;
+            flex-wrap: wrap;
         }
 
         table {
-            width: 135;
-            height: 135;
+            width: 250;
+            height: 250;
             margin: 15px;
-            border: 1px solid black;
+            /* border: 1px solid black; */
             border-collapse: collapse;
         }
     </style>
@@ -65,7 +66,7 @@ require_once('./lib/QRCode.php');
 $data = "HELLO WORLD";
 
 
-$level = Level::$LEVEL_5;
+$level = Level::$LEVEL_1;
 $encoding = Encoding::$ENCODING_ALPHANUMERIC;
 $errorCorrection = ErrorCorrection::$CORRECTION_Q;
 
