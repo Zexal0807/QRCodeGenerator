@@ -21,6 +21,7 @@ class QRCode
         // Interleaved data cordewords and error correction codewords
         $data = QRCode::interleavedCodeword($dataCodewords, $level, $errorCorrection);
 
+        // Convert to bit, add remainder bits
         $data = array_map(function ($el) {
             return sprintf("%08b", $el);
         }, $data);

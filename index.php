@@ -7,7 +7,8 @@
         td[color="R1"],
         td[color="1"],
         td[color="01"],
-        td[color="S1"] {
+        td[color="S1"],
+        td[color="BLACK"] {
             color: white;
             background-color: black;
         }
@@ -18,7 +19,8 @@
         td[color="R0"],
         td[color="0"],
         td[color="10"],
-        td[color="S0"] {
+        td[color="S0"],
+        td[color="WHITE"] {
             background-color: white;
         }
 
@@ -33,7 +35,8 @@
             background-color: white;
         }
 
-        td[color="R"] {
+        td[color="R"],
+        td[color="RESERVED"] {
             background-color: blue;
         }
 
@@ -74,9 +77,13 @@ $errorCorrection = ErrorCorrection::$CORRECTION_Q;
 
 $matrix = QRCode::generate($data, $level, $encoding, $errorCorrection);
 
+//d_var_dump($matrix);
+
+echo $matrix->print();
+/*
 function printMatrix($matrix)
 {
-    $logo = 9;
+    $logo = 5;
     $html = "<table>";
     for ($i = 0; $i < sizeof($matrix); $i++) {
         $html .= "<tr>";
@@ -89,7 +96,7 @@ function printMatrix($matrix)
             ) {
                 $html .= '<td color="R"></td>';
             } else {
-                $html .= '<td color="' . $matrix[$i][$j] . '"></td>';
+                $html .= '<td color="' . $matrix[$i][$j] . '">' . $matrix[$i][$j] . '</td>';
             }
         }
         $html .= "</tr>";
@@ -97,8 +104,8 @@ function printMatrix($matrix)
     $html .= "</table>";
     return $html;
 }
-echo "<div>";
+echo "<br><br><div>";
 echo printMatrix($matrix);
-
+*/
 
 //https://www.thonky.com/qr-code-tutorial/module-placement-matrix
