@@ -21,275 +21,34 @@ require_once('./lib/const/Level.php');
 // TODO: implementare i vari libelli magari con json
 Level::$LEVEL_1 = new Level(
     'LEVEL_1',
-    21,
-    [
-        Encoding::$ENCODING_NUMERIC->getEncoding() => [
-            ErrorCorrection::$CORRECTION_L->getCorrection() => 41,
-            ErrorCorrection::$CORRECTION_M->getCorrection() => 34,
-            ErrorCorrection::$CORRECTION_Q->getCorrection() => 27,
-            ErrorCorrection::$CORRECTION_H->getCorrection() => 17
-        ],
-        Encoding::$ENCODING_ALPHANUMERIC->getEncoding() => [
-            ErrorCorrection::$CORRECTION_L->getCorrection() => 25,
-            ErrorCorrection::$CORRECTION_M->getCorrection() => 20,
-            ErrorCorrection::$CORRECTION_Q->getCorrection() => 16,
-            ErrorCorrection::$CORRECTION_H->getCorrection() => 10
-        ],
-        Encoding::$ENCODING_BYTE->getEncoding() => [
-            ErrorCorrection::$CORRECTION_L->getCorrection() => 17,
-            ErrorCorrection::$CORRECTION_M->getCorrection() => 14,
-            ErrorCorrection::$CORRECTION_Q->getCorrection() => 11,
-            ErrorCorrection::$CORRECTION_H->getCorrection() => 7
-        ],
-        Encoding::$ENCODING_KANJI->getEncoding() => [
-            ErrorCorrection::$CORRECTION_L->getCorrection() => 10,
-            ErrorCorrection::$CORRECTION_M->getCorrection() => 8,
-            ErrorCorrection::$CORRECTION_Q->getCorrection() => 7,
-            ErrorCorrection::$CORRECTION_H->getCorrection() => 4
-        ]
-    ],
-    [
-        Encoding::$ENCODING_NUMERIC->getEncoding() => 10,
-        Encoding::$ENCODING_ALPHANUMERIC->getEncoding() => 9,
-        Encoding::$ENCODING_BYTE->getEncoding() => 8,
-        Encoding::$ENCODING_KANJI->getEncoding() => 8
-    ],
-    [
-        ErrorCorrection::$CORRECTION_L->getCorrection() => [
-            "GROUP_1" => [
-                "NUMBER_BLOCKS" => 1,
-                "BLOCKS_CODEWORDS" => 19
-            ],
-            "GROUP_2" => [
-                "NUMBER_BLOCKS" => 0,
-                "BLOCKS_CODEWORDS" => 0
-            ]
-        ],
-        ErrorCorrection::$CORRECTION_M->getCorrection() => [
-            "GROUP_1" => [
-                "NUMBER_BLOCKS" => 1,
-                "BLOCKS_CODEWORDS" => 16
-            ],
-            "GROUP_2" => [
-                "NUMBER_BLOCKS" => 0,
-                "BLOCKS_CODEWORDS" => 0
-            ]
-        ],
-        ErrorCorrection::$CORRECTION_Q->getCorrection() => [
-            "GROUP_1" => [
-                "NUMBER_BLOCKS" => 1,
-                "BLOCKS_CODEWORDS" => 13
-            ],
-            "GROUP_2" => [
-                "NUMBER_BLOCKS" => 0,
-                "BLOCKS_CODEWORDS" => 0
-            ]
-        ],
-        ErrorCorrection::$CORRECTION_H->getCorrection() => [
-            "GROUP_1" => [
-                "NUMBER_BLOCKS" => 1,
-                "BLOCKS_CODEWORDS" => 9
-            ],
-            "GROUP_2" => [
-                "NUMBER_BLOCKS" => 0,
-                "BLOCKS_CODEWORDS" => 0
-            ]
-        ]
-    ],
-    [
-        ErrorCorrection::$CORRECTION_L->getCorrection() => 7,
-        ErrorCorrection::$CORRECTION_M->getCorrection() => 10,
-        ErrorCorrection::$CORRECTION_Q->getCorrection() => 13,
-        ErrorCorrection::$CORRECTION_H->getCorrection() => 17
-    ],
-    0,
-    []
+    json_decode(file_get_contents(dirname(__FILE__) . "/capacity/LEVEL_1.json"), true)
 );
 
 Level::$LEVEL_2 = new Level(
     'LEVEL_2',
-    25,
-    [
-        Encoding::$ENCODING_NUMERIC->getEncoding() => [
-            ErrorCorrection::$CORRECTION_L->getCorrection() => 77,
-            ErrorCorrection::$CORRECTION_M->getCorrection() => 63,
-            ErrorCorrection::$CORRECTION_Q->getCorrection() => 48,
-            ErrorCorrection::$CORRECTION_H->getCorrection() => 34
-        ],
-        Encoding::$ENCODING_ALPHANUMERIC->getEncoding() => [
-            ErrorCorrection::$CORRECTION_L->getCorrection() => 47,
-            ErrorCorrection::$CORRECTION_M->getCorrection() => 38,
-            ErrorCorrection::$CORRECTION_Q->getCorrection() => 29,
-            ErrorCorrection::$CORRECTION_H->getCorrection() => 20
-        ],
-        Encoding::$ENCODING_BYTE->getEncoding() => [
-            ErrorCorrection::$CORRECTION_L->getCorrection() => 32,
-            ErrorCorrection::$CORRECTION_M->getCorrection() => 26,
-            ErrorCorrection::$CORRECTION_Q->getCorrection() => 20,
-            ErrorCorrection::$CORRECTION_H->getCorrection() => 14
-        ],
-        Encoding::$ENCODING_KANJI->getEncoding() => [
-            ErrorCorrection::$CORRECTION_L->getCorrection() => 20,
-            ErrorCorrection::$CORRECTION_M->getCorrection() => 16,
-            ErrorCorrection::$CORRECTION_Q->getCorrection() => 12,
-            ErrorCorrection::$CORRECTION_H->getCorrection() => 8
-        ]
-    ],
-    [
-        Encoding::$ENCODING_NUMERIC->getEncoding() => 10,
-        Encoding::$ENCODING_ALPHANUMERIC->getEncoding() => 9,
-        Encoding::$ENCODING_BYTE->getEncoding() => 8,
-        Encoding::$ENCODING_KANJI->getEncoding() => 8
-    ],
-    [
-        ErrorCorrection::$CORRECTION_L->getCorrection() => [
-            "GROUP_1" => [
-                "NUMBER_BLOCKS" => 1,
-                "BLOCKS_CODEWORDS" => 34
-            ],
-            "GROUP_2" => [
-                "NUMBER_BLOCKS" => 0,
-                "BLOCKS_CODEWORDS" => 0
-            ]
-        ],
-        ErrorCorrection::$CORRECTION_M->getCorrection() => [
-            "GROUP_1" => [
-                "NUMBER_BLOCKS" => 1,
-                "BLOCKS_CODEWORDS" => 28
-            ],
-            "GROUP_2" => [
-                "NUMBER_BLOCKS" => 0,
-                "BLOCKS_CODEWORDS" => 0
-            ]
-        ],
-        ErrorCorrection::$CORRECTION_Q->getCorrection() => [
-            "GROUP_1" => [
-                "NUMBER_BLOCKS" => 1,
-                "BLOCKS_CODEWORDS" => 22
-            ],
-            "GROUP_2" => [
-                "NUMBER_BLOCKS" => 0,
-                "BLOCKS_CODEWORDS" => 0
-            ]
-        ],
-        ErrorCorrection::$CORRECTION_H->getCorrection() => [
-            "GROUP_1" => [
-                "NUMBER_BLOCKS" => 1,
-                "BLOCKS_CODEWORDS" => 16
-            ],
-            "GROUP_2" => [
-                "NUMBER_BLOCKS" => 0,
-                "BLOCKS_CODEWORDS" => 0
-            ]
-        ]
-    ],
-    [
-        ErrorCorrection::$CORRECTION_L->getCorrection() => 10,
-        ErrorCorrection::$CORRECTION_M->getCorrection() => 16,
-        ErrorCorrection::$CORRECTION_Q->getCorrection() => 22,
-        ErrorCorrection::$CORRECTION_H->getCorrection() => 28
-    ],
-    7,
-    [[18, 18]]
+    json_decode(file_get_contents(dirname(__FILE__) . "/capacity/LEVEL_1.json"), true)
+);;
+
+Level::$LEVEL_3 = new Level(
+    'LEVEL_3',
+    json_decode(file_get_contents(dirname(__FILE__) . "/capacity/LEVEL_1.json"), true)
 );
 
+Level::$LEVEL_4 = new Level(
+    'LEVEL_4',
+    json_decode(file_get_contents(dirname(__FILE__) . "/capacity/LEVEL_1.json"), true)
+);
 
 Level::$LEVEL_5 = new Level(
     'LEVEL_5',
-    37,
-    [
-        Encoding::$ENCODING_NUMERIC->getEncoding() => [
-            ErrorCorrection::$CORRECTION_L->getCorrection() => 255,
-            ErrorCorrection::$CORRECTION_M->getCorrection() => 202,
-            ErrorCorrection::$CORRECTION_Q->getCorrection() => 144,
-            ErrorCorrection::$CORRECTION_H->getCorrection() => 106
-        ],
-        Encoding::$ENCODING_ALPHANUMERIC->getEncoding() => [
-            ErrorCorrection::$CORRECTION_L->getCorrection() => 157,
-            ErrorCorrection::$CORRECTION_M->getCorrection() => 122,
-            ErrorCorrection::$CORRECTION_Q->getCorrection() => 87,
-            ErrorCorrection::$CORRECTION_H->getCorrection() => 64
-        ],
-        Encoding::$ENCODING_BYTE->getEncoding() => [
-            ErrorCorrection::$CORRECTION_L->getCorrection() => 106,
-            ErrorCorrection::$CORRECTION_M->getCorrection() => 84,
-            ErrorCorrection::$CORRECTION_Q->getCorrection() => 60,
-            ErrorCorrection::$CORRECTION_H->getCorrection() => 44
-        ],
-        Encoding::$ENCODING_KANJI->getEncoding() => [
-            ErrorCorrection::$CORRECTION_L->getCorrection() => 65,
-            ErrorCorrection::$CORRECTION_M->getCorrection() => 52,
-            ErrorCorrection::$CORRECTION_Q->getCorrection() => 37,
-            ErrorCorrection::$CORRECTION_H->getCorrection() => 27
-        ]
-    ],
-    [
-        Encoding::$ENCODING_NUMERIC->getEncoding() => 10,
-        Encoding::$ENCODING_ALPHANUMERIC->getEncoding() => 9,
-        Encoding::$ENCODING_BYTE->getEncoding() => 8,
-        Encoding::$ENCODING_KANJI->getEncoding() => 8
-    ],
-    [
-        ErrorCorrection::$CORRECTION_L->getCorrection() => [
-            "GROUP_1" => [
-                "NUMBER_BLOCKS" => 1,
-                "BLOCKS_CODEWORDS" => 108
-            ],
-            "GROUP_2" => [
-                "NUMBER_BLOCKS" => 0,
-                "BLOCKS_CODEWORDS" => 0
-            ]
-        ],
-        ErrorCorrection::$CORRECTION_M->getCorrection() => [
-            "GROUP_1" => [
-                "NUMBER_BLOCKS" => 2,
-                "BLOCKS_CODEWORDS" => 43
-            ],
-            "GROUP_2" => [
-                "NUMBER_BLOCKS" => 0,
-                "BLOCKS_CODEWORDS" => 0
-            ]
-        ],
-        ErrorCorrection::$CORRECTION_Q->getCorrection() => [
-            "GROUP_1" => [
-                "NUMBER_BLOCKS" => 2,
-                "BLOCKS_CODEWORDS" => 15
-            ],
-            "GROUP_2" => [
-                "NUMBER_BLOCKS" => 2,
-                "BLOCKS_CODEWORDS" => 16
-            ]
-        ],
-        ErrorCorrection::$CORRECTION_H->getCorrection() => [
-            "GROUP_1" => [
-                "NUMBER_BLOCKS" => 2,
-                "BLOCKS_CODEWORDS" => 11
-            ],
-            "GROUP_2" => [
-                "NUMBER_BLOCKS" => 2,
-                "BLOCKS_CODEWORDS" => 12
-            ]
-        ]
-    ],
-    [
-        ErrorCorrection::$CORRECTION_L->getCorrection() => 26,
-        ErrorCorrection::$CORRECTION_M->getCorrection() => 24,
-        ErrorCorrection::$CORRECTION_Q->getCorrection() => 18,
-        ErrorCorrection::$CORRECTION_H->getCorrection() => 22
-    ],
-    7,
-    [
-        [30, 30]
-    ]
+    json_decode(file_get_contents(dirname(__FILE__) . "/capacity/LEVEL_1.json"), true)
 );
 
+Level::$LEVEL_6 = new Level(
+    'LEVEL_6',
+    json_decode(file_get_contents(dirname(__FILE__) . "/capacity/LEVEL_1.json"), true)
+);
 Level::$LEVEL_7 = new Level(
     'LEVEL_7',
-    45,
-    [],
-    [],
-    [],
-    [],
-    7,
-    []
+    json_decode(file_get_contents(dirname(__FILE__) . "/capacity/LEVEL_7.json"), true)
 );

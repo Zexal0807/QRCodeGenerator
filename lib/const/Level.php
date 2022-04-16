@@ -10,18 +10,20 @@ class Level
     private $errorCorrectionCodewordsForBlock;
     private $remainderBits;
     private $alignmentPatternCenters;
+    private $versionInformationString;
 
-    public function __construct($level, $size, $capacity, $characterCountIndicatorLength, $codewords, $errorCorrectionCodewordsForBlock, $remainderBits, $alignmentPatternCenters)
+    public function __construct($level, $data)
     {
         $this->level = $level;
         $this->version = intval(substr($level, 6));
-        $this->size = $size;
-        $this->capacity = $capacity;
-        $this->characterCountIndicatorLength = $characterCountIndicatorLength;
-        $this->codewords = $codewords;
-        $this->errorCorrectionCodewordsForBlock = $errorCorrectionCodewordsForBlock;
-        $this->remainderBits = $remainderBits;
-        $this->alignmentPatternCenters = $alignmentPatternCenters;
+        $this->size = $data['size'];
+        $this->capacity = $data['capacity'];
+        $this->characterCountIndicatorLength = $data['characterCountIndicatorLength'];
+        $this->codewords = $data['codewords'];
+        $this->errorCorrectionCodewordsForBlock = $data['errorCorrectionCodewordsForBlock'];
+        $this->remainderBits = $data['remainderBits'];
+        $this->alignmentPatternCenters = $data['alignmentPatternCenters'];
+        $this->versionInformationString = $data['versionInformationString'];
     }
 
     public function getLevel()
@@ -90,13 +92,8 @@ class Level
 
     public function getVersionInformationString()
     {
-        return Level::$versionInformationString[$this->level] || "";
+        return $this->versionInformationString;
     }
-
-    // TODO: Add from https://www.thonky.com/qr-code-tutorial/format-version-tables
-    private static $versionInformationString = [
-        'LEVEL_7' => "000111110010010100"
-    ];
 
     static $LEVEL_1;
     static $LEVEL_2;
