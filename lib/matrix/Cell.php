@@ -41,10 +41,6 @@ class Cell
 
     public function getColor()
     {
-        if (!$this->isSet()) {
-            return $this->type;
-        }
-
         return $this->bit == 0 ? "WHITE" : "BLACK";
     }
 
