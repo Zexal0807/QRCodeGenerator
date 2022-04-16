@@ -29,6 +29,16 @@ class Cell
         }
     }
 
+    public function getBit()
+    {
+        return $this->bit;
+    }
+
+    public function setBit($bit)
+    {
+        $this->bit = $bit;
+    }
+
     public function getColor()
     {
         if (!$this->isSet()) {
@@ -43,8 +53,13 @@ class Cell
         return $this->bit !== NULL;
     }
 
+    public function isDataCell()
+    {
+        return $this->type === NULL;
+    }
+
     public function isFreeDataCell()
     {
-        return $this->type === NULL && !$this->isSet();
+        return $this->isDataCell() && !$this->isSet();
     }
 }
