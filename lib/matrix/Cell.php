@@ -25,7 +25,16 @@ class Cell
 
     public function getColor()
     {
+        if (!$this->isSet()) {
+            return NULL;
+        }
+
         return $this->bit == 0 ? "WHITE" : "BLACK";
+    }
+
+    public function isSet()
+    {
+        return $this->bit != NULL;
     }
 
     public function isDataCell()
