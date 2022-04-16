@@ -14,4 +14,17 @@ class NumericModeEncoding extends Encoding
 
         return implode("", $breakData);
     }
+
+    private function decToBin($dec)
+    {
+        switch (strlen($dec)) {
+            case 1:
+                return sprintf("%04b", $dec);
+            case 2:
+                return sprintf("%07b", $dec);
+            case 3:
+            default:
+                return sprintf("%010b", $dec);
+        }
+    }
 }

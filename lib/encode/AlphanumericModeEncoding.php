@@ -70,9 +70,9 @@ class AlphanumericModeEncoding extends Encoding
         if (isset($breakData[1])) {
             $breakData[1] = $this->charToValue($breakData[1]);
             $value = $breakData[0] * 45 + $breakData[1];
-            return $this->decToBin($value, 11);
+            return sprintf("%011b", $value);
         }
-        return $this->decToBin($breakData[0], 6);
+        return sprintf("%06b", $breakData[0]);
     }
 
     private function charToValue($char)
