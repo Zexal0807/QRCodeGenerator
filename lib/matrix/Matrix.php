@@ -18,11 +18,25 @@ class Matrix
 
     public function setCell($x, $y, $value)
     {
-        $this->data[$y][$x]->setData($value);
+        $this->data[$x][$y]->setData($value);
     }
 
     public function getCell($x, $y)
     {
-        return $this->data[$y][$x];
+        return $this->data[$x][$y];
+    }
+
+    public function print()
+    {
+        $html = "<table>";
+        for ($i = 0; $i < sizeof($this->data); $i++) {
+            $html .= "<tr>";
+            for ($j = 0; $j < sizeof($this->data); $j++) {
+                $html .= '<td color="' . $this->data[$i][$j]->getColor() . '"></td>';
+            }
+            $html .= "</tr>";
+        }
+        $html .= "</table>";
+        return $html;
     }
 }
