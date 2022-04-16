@@ -3,17 +3,14 @@ class PolynomialDivision
 {
     public static function calc($coefficients, $divisionExponent)
     {
-        //ES 67x14 + 85x13 + 70x12 + 134x11 + 87x10 + 38x9 + 85x8 + 194x7 + 119x6 + 50x5 + 6x4 + 18x3 + 6x2 + 103x1 + 38
-        /*$coefficients = [67, 85, 70, 134, 87, 38, 85, 194, 119, 50, 6, 18, 6, 103, 38];
-        $divisionExponent = 18;*/
-
+        // Calc max exponent of data polynomial
         $dataPolynomial = $coefficients;
         $maxExponentDataPolynomial = sizeof($coefficients) - 1;
 
-        // moltiplicare per x^(divisionExponent)
+        // Multiply for x^(divisionExponent)
         $maxExponentDataPolynomial = $maxExponentDataPolynomial + $divisionExponent;
 
-        // Get polinomio generatore
+        // Get Generator polynomial
         $generetorPolynomial = PolynomialDivision::getAlphaExponentForErrorCorrection($divisionExponent);
         $maxExponentGeneretorPolynomial = $maxExponentDataPolynomial;
 
@@ -31,7 +28,7 @@ class PolynomialDivision
             }
 
 
-            // Multiply per alpha^leadTearm with module 255
+            // Multiply for alpha^leadTearm with module 255
             $workingPolynomial = array_map(function ($el) use ($leadTearmAlpha) {
                 return ($el + $leadTearmAlpha) % 255;
             }, $generetorPolynomial);
@@ -64,10 +61,10 @@ class PolynomialDivision
         $table = [
             [0, 87, 229, 146, 149, 238, 102, 21],       // 7
             [0, 175, 238, 208, 249, 215, 252, 196, 28],  //8
-            [], //9
+            [0, 95, 246, 137, 231, 235, 149, 11, 123, 36], //9
             [0, 251, 67, 46, 61, 118, 70, 64, 94, 32, 45], //10
-            [], //11
-            [], //12
+            [0, 220, 192, 91, 194, 172, 177, 209, 116, 227, 10, 55], //11
+            [0, 102, 43, 98, 121, 187, 113, 198, 143, 131, 87, 147, 66], //12
             [0, 74, 152, 176, 100, 86, 100, 106, 104, 130, 218, 206, 140, 78], //13
             [], //14
             [], //15
