@@ -9,6 +9,7 @@ abstract class Encoding
         $this->encoding = $encoding;
         $this->modeInidicator = $modeInidicator;
     }
+
     public function getEncoding()
     {
         return $this->encoding;

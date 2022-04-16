@@ -1,9 +1,9 @@
 <?php
-require_once('./lib/const/Encoding.php');
-require_once('./lib/const/NumericModeEncoding.php');
-require_once('./lib/const/AlphanumericModeEncoding.php');
-require_once('./lib/const/ByteModeEncoding.php');
-require_once('./lib/const/KanjiModeEncoding.php');
+require_once(dirname(__FILE__) . './encode/NumericModeEncoding.php');
+require_once(dirname(__FILE__) . './encode/AlphanumericModeEncoding.php');
+require_once(dirname(__FILE__) . './encode/ByteModeEncoding.php');
+require_once(dirname(__FILE__) . './encode/KanjiModeEncoding.php');
+
 require_once('./lib/const/ErrorCorrection.php');
 require_once('./lib/const/Level.php');
 

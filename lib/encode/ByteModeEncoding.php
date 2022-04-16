@@ -1,5 +1,6 @@
 <?php
-require_once('./lib/const/Encoding.php');
+require_once(dirname(__FILE__) . './Encoding.php');
+
 
 class ByteModeEncoding extends Encoding
 {
