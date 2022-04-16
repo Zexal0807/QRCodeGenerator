@@ -8,22 +8,22 @@ class Matrix
     public function __construct($size)
     {
         $this->data = [];
-        for ($i = 0; $i < $size; $i++) {
-            $this->data[$i] = [];
-            for ($j = 0; $j < $size; $j++) {
-                $this->data[$i][$j] = new Cell();
+        for ($y = 0; $y < $size; $y++) {
+            $this->data[$y] = [];
+            for ($x = 0; $x < $size; $x++) {
+                $this->data[$y][$x] = new Cell();
             }
         }
     }
 
-    public function setCell($x, $y, $value)
+    public function setCell($y, $x, $value)
     {
-        $this->data[$x][$y]->setData($value);
+        $this->data[$y][$x]->setData($value);
     }
 
-    public function getCell($x, $y)
+    public function getCell($y, $x)
     {
-        return $this->data[$x][$y];
+        return $this->data[$y][$x];
     }
 
     public function print()

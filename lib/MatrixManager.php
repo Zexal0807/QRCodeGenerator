@@ -1,4 +1,6 @@
 <?php
+require_once(dirname(__FILE__) . './matrix/Matrix.php');
+
 class MatrixManager
 {
     private $data;
@@ -12,14 +14,7 @@ class MatrixManager
 
     private function resetMatrix()
     {
-        $this->matrix = [];
-
-        for ($i = 0; $i < $this->level->getSize(); $i++) {
-            $this->matrix[$i] = [];
-            for ($j = 0; $j < $this->level->getSize(); $j++) {
-                $this->matrix[$i][$j] = NULL;
-            }
-        }
+        $this->matrix = new Matrix($this->level->getSize());
     }
 
     public function getMatrix()
@@ -78,6 +73,17 @@ class MatrixManager
         $this->addPattern($pattern, 0, $this->level->getSize() - 7);
     }
 
+    private function addPattern($pattern, $cornerX = 0, $cornerY = 0)
+    {
+        for ($i = 0; $i < sizeof($pattern); $i++) {
+            for ($j = 0; $j < sizeof($pattern[0]) || 0; $j++) {
+                if (!$this->matrix->getCell($i + $cornerY, $j + $cornerX)->isSet()) {
+                    $this->matrix->setCell($i + $cornerY, $j + $cornerX, $pattern[$i][$j]);
+                }
+            }
+        }
+    }
+
     private function addSeparetors()
     {
         $pattern = [
@@ -121,14 +127,14 @@ class MatrixManager
     private function addTimingPatterns()
     {
         for ($i = 0; $i < $this->level->getSize() - 16; $i++) {
-            $this->matrix[6][6 + $i + 2] = "T" . ($i + 1) % 2;
-            $this->matrix[6 + $i + 2][6] = "T" . ($i + 1) % 2;
+            $this->matrix->setCell(6, 6 + $i + 2, ("T" . ($i + 1) % 2));
+            $this->matrix->setCell(6 + $i + 2, 6, ("T" . ($i + 1) % 2));
         }
     }
 
     private function addDarkModule()
     {
-        $this->matrix[$this->level->getSize() - 8][8] = "D";
+        $this->matrix->setCell($this->level->getSize() - 8, 8, "D");
     }
 
     private function addReservedFormatInformationArea()
@@ -146,7 +152,10 @@ class MatrixManager
         $this->addPattern($pattern, 8, 0);
         $this->addPattern($pattern, 8, $this->level->getSize() - 8);
 
-        $this->matrix[8][8] = "R";
+        $pattern = [
+            ["R"]
+        ];
+        $this->addPattern($pattern, 8, 8);
 
         $pattern = [
             ["R", "R", "R", "R", "R", "R", "R", "R"]
@@ -193,14 +202,8 @@ class MatrixManager
 
         while ($i < strlen($this->data)) {
 
-            // check is free
-            $free = false;
-            if (!isset($this->matrix[$y][$x])) {
-                $free = true;
-            }
-            if ($free) {
-                $this->matrix[$y][$x] = $this->data[$i];
-                //$this->matrix[$y][$x] = $i;
+            if ($this->matrix->getCell($y, $x)->isFreeDataCell()) {
+                $this->matrix->setCell($y, $x, $this->data[$i]);
                 $i++;
             }
 
@@ -257,17 +260,6 @@ class MatrixManager
                         $dir = "UP";
                         $step = "LEFT";
                         break;
-                }
-            }
-        }
-    }
-
-    private function addPattern($pattern, $cornerX = 0, $cornerY = 0)
-    {
-        for ($i = 0; $i < sizeof($pattern); $i++) {
-            for ($j = 0; $j < sizeof($pattern[0]) || 0; $j++) {
-                if (!isset($this->matrix[$i + $cornerY][$j + $cornerX])) {
-                    $this->matrix[$i + $cornerY][$j + $cornerX] = $pattern[$i][$j];
                 }
             }
         }

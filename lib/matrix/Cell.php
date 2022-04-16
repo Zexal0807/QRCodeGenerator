@@ -11,7 +11,10 @@ class Cell
 
     public function setData($data)
     {
-        if ($data == "D") {
+        if ($data == "R") {
+            $this->type = "RESERVED";
+            $this->bit = NULL;
+        } else if ($data == "D") {
             $this->type = "DARK";
             $this->bit = 1;
         } else if (strlen($data) == 1) {
@@ -19,6 +22,9 @@ class Cell
             $this->bit = intval($data);
         } else {
             $this->type = substr($data, 0, -1);
+            if ($data[0] == "T") {
+                $this->type  = "TIMING";
+            }
             $this->bit = intval(substr($data, -1));
         }
     }
@@ -26,7 +32,7 @@ class Cell
     public function getColor()
     {
         if (!$this->isSet()) {
-            return NULL;
+            return $this->type;
         }
 
         return $this->bit == 0 ? "WHITE" : "BLACK";
@@ -34,11 +40,11 @@ class Cell
 
     public function isSet()
     {
-        return $this->bit != NULL;
+        return $this->bit !== NULL;
     }
 
-    public function isDataCell()
+    public function isFreeDataCell()
     {
-        return $this->type == NULL;
+        return $this->type === NULL && !$this->isSet();
     }
 }
