@@ -34,6 +34,7 @@ class Matrix
         return $this->data[$y][$x];
     }
 
+    // TODO: Implement logo space using errorCorrection perc
     public function print()
     {
         $html = "<table>";

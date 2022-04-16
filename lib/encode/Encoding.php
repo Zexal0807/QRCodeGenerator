@@ -22,6 +22,7 @@ abstract class Encoding
 
     abstract public function encode($data);
 
+    //TODO: Improve code
     protected function decToBin($dec, $bit = false)
     {
         if ($bit == false) {
