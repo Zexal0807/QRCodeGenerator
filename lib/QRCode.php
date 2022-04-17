@@ -55,7 +55,7 @@ class QRCode
         }
 
         // Add 0 for mutiple of 8
-        $bitString = $bitString . "" . str_repeat("0", 8 - strlen($bitString) % 8);
+        $bitString = $bitString . "" . str_repeat("0", (8 - strlen($bitString) % 8) % 8);
 
         // Add bytes for cover max capacity
         $bytes = ["11101100", "00010001"];
