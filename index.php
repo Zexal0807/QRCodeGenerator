@@ -79,7 +79,7 @@ require_once('./lib/QRCode.php');
     EVENT : "BEGIN:VEVENT\nSUMMARY:sddasdas\nLOCATION:asdasd\nDTSTART:20220416T191400\nDTEND:20220416T191400\nEND:VEVENT\n"
 */
 
-$data = "tel:3333333333333";
+$data = "tel:3333333333";
 
 $level = Level::$LEVEL_1;
 $encoding = Encoding::$ENCODING_BYTE;
