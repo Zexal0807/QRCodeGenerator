@@ -66,46 +66,27 @@ require_once('./d_var_dump.php');
 
 require_once('./lib/QRCode.php');
 
-$data = "HELLO WORLD";
+// TODO: Add different type of content
+/*
+    url (link o altri) : "https://www.youtube.com/watch?v=3BhdrSP4v68"
+    email: "mailto:test@gmail.com?subject=Hi&body=Hello"
+    phone number : "tel:3333333333333"
+    SMS : "SMSTO:3333333333333:Hi"
+    position : "https://maps.google.com/local?q=51.049259,13.73836"
+    WIFIPSW : "WIFI:S:name;T:WPA;P:password;;"
+              "WIFI:S:name;T:nopass;P:password;;"
+              "WIFI:S:name;T:WEP;P:password;;"
+    EVENT : "BEGIN:VEVENT\nSUMMARY:sddasdas\nLOCATION:asdasd\nDTSTART:20220416T191400\nDTEND:20220416T191400\nEND:VEVENT\n"
+*/
 
+$data = "tel:3333333333333";
 
 $level = Level::$LEVEL_1;
-$encoding = Encoding::$ENCODING_ALPHANUMERIC;
-$errorCorrection = ErrorCorrection::$CORRECTION_Q;
+$encoding = Encoding::$ENCODING_BYTE;
+$errorCorrection = ErrorCorrection::$CORRECTION_M;
 
 //$level =  QRCode::findBestLevel($data, $encoding, $errorCorrection);
 
 $matrix = QRCode::generate($data, $level, $encoding, $errorCorrection);
 
-//d_var_dump($matrix);
-
 echo $matrix->print();
-/*
-function printMatrix($matrix)
-{
-    $logo = 5;
-    $html = "<table>";
-    for ($i = 0; $i < sizeof($matrix); $i++) {
-        $html .= "<tr>";
-        for ($j = 0; $j < sizeof($matrix); $j++) {
-            if (
-                $j > (sizeof($matrix) - $logo) / 2 - 1 &&
-                $j < (sizeof($matrix) - $logo) / 2 + $logo  &&
-                $i > (sizeof($matrix) - $logo) / 2 - 1 &&
-                $i < (sizeof($matrix) - $logo) / 2 + $logo && false
-            ) {
-                $html .= '<td color="R"></td>';
-            } else {
-                $html .= '<td color="' . $matrix[$i][$j] . '">' . $matrix[$i][$j] . '</td>';
-            }
-        }
-        $html .= "</tr>";
-    }
-    $html .= "</table>";
-    return $html;
-}
-echo "<br><br><div>";
-echo printMatrix($matrix);
-*/
-
-//https://www.thonky.com/qr-code-tutorial/module-placement-matrix

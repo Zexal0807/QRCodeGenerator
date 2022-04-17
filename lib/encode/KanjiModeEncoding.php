@@ -5,7 +5,7 @@ class KanjiModeEncoding extends Encoding
 {
     public function encode($data)
     {
-        // TODO: implementare
+        // TODO: Implement
         return $data;
     }
 }

@@ -34,15 +34,26 @@ class Matrix
         return $this->data[$y][$x];
     }
 
-    // TODO: Implement logo space using errorCorrection perc
-
     public function print()
     {
+        $size = $this->getSize();
+        $logoSize = 5;
+
         $html = "<table>";
-        for ($i = 0; $i < sizeof($this->data); $i++) {
+        for ($i = 0; $i < $size; $i++) {
             $html .= "<tr>";
-            for ($j = 0; $j < sizeof($this->data); $j++) {
-                $html .= '<td color="' . $this->data[$i][$j]->getColor() . '"></td>';
+            for ($j = 0; $j < $size; $j++) {
+                if (
+                    $j > ($size - $logoSize) / 2 - 1 &&
+                    $j < ($size - $logoSize) / 2 + $logoSize  &&
+                    $i > ($size - $logoSize) / 2 - 1 &&
+                    $i < ($size - $logoSize) / 2 + $logoSize && false
+                ) {
+                    // TODO: Implement logo
+                    $html .= '<td color="LOGO"></td>';
+                } else {
+                    $html .= '<td color="' . $this->data[$i][$j]->getColor() . '"></td>';
+                }
             }
             $html .= "</tr>";
         }

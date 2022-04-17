@@ -18,7 +18,7 @@ ErrorCorrection::$CORRECTION_H = new ErrorCorrection('CORRECTION_H', 0.30);
 
 require_once('./lib/const/Level.php');
 
-// TODO: implementare i vari libelli magari con json
+// TODO: Implement different level
 Level::$LEVEL_1 = new Level(
     'LEVEL_1',
     json_decode(file_get_contents(dirname(__FILE__) . "/capacity/LEVEL_1.json"), true)
@@ -29,25 +29,8 @@ Level::$LEVEL_2 = new Level(
     json_decode(file_get_contents(dirname(__FILE__) . "/capacity/LEVEL_2.json"), true)
 );;
 
-Level::$LEVEL_3 = new Level(
-    'LEVEL_3',
-    json_decode(file_get_contents(dirname(__FILE__) . "/capacity/LEVEL_1.json"), true)
-);
 
-Level::$LEVEL_4 = new Level(
-    'LEVEL_4',
-    json_decode(file_get_contents(dirname(__FILE__) . "/capacity/LEVEL_1.json"), true)
-);
 
-Level::$LEVEL_5 = new Level(
-    'LEVEL_5',
-    json_decode(file_get_contents(dirname(__FILE__) . "/capacity/LEVEL_1.json"), true)
-);
-
-Level::$LEVEL_6 = new Level(
-    'LEVEL_6',
-    json_decode(file_get_contents(dirname(__FILE__) . "/capacity/LEVEL_1.json"), true)
-);
 Level::$LEVEL_7 = new Level(
     'LEVEL_7',
     json_decode(file_get_contents(dirname(__FILE__) . "/capacity/LEVEL_7.json"), true)
