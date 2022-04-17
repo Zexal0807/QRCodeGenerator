@@ -35,19 +35,6 @@ class Matrix
     }
 
     // TODO: Implement logo space using errorCorrection perc
-    // TODO: Add different type of content
-    /*
-        url (link o altri) : "https://www.youtube.com/watch?v=3BhdrSP4v68&ab_channel=ShevanFreeman"
-        email: "mailto:gallinar00@gmail.com?subject=gallinar00@gmail.com&body=asasas"
-        phone number : "tel:3312831040"
-        SMS : "SMSTO:3312831040:yujjt"
-        position : "https://maps.google.com/local?q=51.049259,13.73836"
-        WIFIPSW : "WIFI:S:name;T:WPA;P:password;;"
-                  "WIFI:S:name;T:nopass;P:password;;"
-                  "WIFI:S:name;T:WEP;P:password;;"
-        EVENT : "BEGIN:VEVENT\nSUMMARY:sddasdas\nLOCATION:asdasd\nDTSTART:20220416T191400\nDTEND:20220416T191400\nEND:VEVENT\n"
-
-    */
 
     public function print()
     {

@@ -1,11 +1,10 @@
 <?php
 class PolynomialDivision
 {
-    public static function calc($coefficients, $divisionExponent)
+    public static function calc($messagePolynomial, $divisionExponent)
     {
-        // Calc max exponent of data polynomial
-        $dataPolynomial = $coefficients;
-        $maxExponentDataPolynomial = sizeof($coefficients) - 1;
+        // Calc max exponent of message polynomial
+        $maxExponentDataPolynomial = sizeof($messagePolynomial) - 1;
 
         // Multiply for x^(divisionExponent)
         $maxExponentDataPolynomial = $maxExponentDataPolynomial + $divisionExponent;
@@ -17,16 +16,15 @@ class PolynomialDivision
         $workingPolynomial =  $generetorPolynomial;
         $maxExponentWorkingPolynomial = $maxExponentGeneretorPolynomial;
 
-        $precPolynomial = $dataPolynomial;
+        $precPolynomial = $messagePolynomial;
 
-        for ($k = 0; $k < sizeof($coefficients); $k++) {
+        for ($k = 0; $k < sizeof($messagePolynomial); $k++) {
 
             // Calc leadTearm as Alpha
             $leadTearmAlpha =  PolynomialDivision::Integer2Alpha($workingPolynomial[0]);
             if ($k == 0) {
-                $leadTearmAlpha = PolynomialDivision::Integer2Alpha($coefficients[$k]);
+                $leadTearmAlpha = PolynomialDivision::Integer2Alpha($messagePolynomial[$k]);
             }
-
 
             // Multiply for alpha^leadTearm with module 255
             $workingPolynomial = array_map(function ($el) use ($leadTearmAlpha) {
@@ -39,8 +37,8 @@ class PolynomialDivision
             }, $workingPolynomial);
 
             // XOR
-            for ($i = 0; $i < $divisionExponent; $i++) {
-                $workingPolynomial[$i] =  $workingPolynomial[$i] ^ (isset($precPolynomial[$i]) ? $precPolynomial[$i] : 0);
+            for ($i = 0; $i < sizeof($messagePolynomial); $i++) {
+                $workingPolynomial[$i] =  (isset($workingPolynomial[$i]) ? $workingPolynomial[$i] : 0) ^ (isset($precPolynomial[$i]) ? $precPolynomial[$i] : 0);
             }
 
             // Remove 0 terms
@@ -51,9 +49,8 @@ class PolynomialDivision
 
             $precPolynomial = $workingPolynomial;
         }
-        array_pop($workingPolynomial);
 
-        return $workingPolynomial;
+        return array_slice($workingPolynomial, 0, $divisionExponent);
     }
 
     private static function getAlphaExponentForErrorCorrection($numberCodewords)
