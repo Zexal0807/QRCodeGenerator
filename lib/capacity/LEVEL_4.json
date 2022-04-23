@@ -46,7 +46,7 @@
 		},
 		"CORRECTION_M": {
 			"GROUP_1": {
-				"NUMBER_BLOCKS": 1,
+				"NUMBER_BLOCKS": 2,
 				"BLOCKS_CODEWORDS": 32
 			},
 			"GROUP_2": {
@@ -56,7 +56,7 @@
 		},
 		"CORRECTION_Q": {
 			"GROUP_1": {
-				"NUMBER_BLOCKS": 1,
+				"NUMBER_BLOCKS": 2,
 				"BLOCKS_CODEWORDS": 24
 			},
 			"GROUP_2": {
@@ -66,7 +66,7 @@
 		},
 		"CORRECTION_H": {
 			"GROUP_1": {
-				"NUMBER_BLOCKS": 1,
+				"NUMBER_BLOCKS": 4,
 				"BLOCKS_CODEWORDS": 9
 			},
 			"GROUP_2": {

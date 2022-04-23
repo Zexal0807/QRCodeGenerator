@@ -27,12 +27,18 @@ Level::$LEVEL_1 = new Level(
 Level::$LEVEL_2 = new Level(
     'LEVEL_2',
     json_decode(file_get_contents(dirname(__FILE__) . "/capacity/LEVEL_2.json"), true)
-);;
+);
 
 Level::$LEVEL_3 = new Level(
     'LEVEL_3',
     json_decode(file_get_contents(dirname(__FILE__) . "/capacity/LEVEL_3.json"), true)
-);;
+);
+
+Level::$LEVEL_4 = new Level(
+    'LEVEL_4',
+    json_decode(file_get_contents(dirname(__FILE__) . "/capacity/LEVEL_4.json"), true)
+);
+
 
 
 
