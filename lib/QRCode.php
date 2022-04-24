@@ -7,7 +7,39 @@ require_once('./lib/MaskerMaker.php');
 class QRCode
 {
 
-    static function generate($data, Level $level,  Encoding $encoding, ErrorCorrection $errorCorrection)
+    public static function create($data, ErrorCorrection $errorCorrection)
+    {
+        $encoding = QRCode::findEnconding($data);
+        $level = QRCode::findBestLevel($data, $encoding, $errorCorrection);
+
+        return QRCode::generate($data, $level, $encoding, $errorCorrection);
+    }
+
+    private static function findEnconding($data)
+    {
+        if (preg_match('/^[0-9]*$/', $data)) {
+            return Encoding::$ENCODING_NUMERIC;
+        }
+        if (preg_match('/^[A-Z0-9 $%*+.\/:-]*$/', $data)) {
+            return Encoding::$ENCODING_ALPHANUMERIC;
+        }
+
+        return Encoding::$ENCODING_BYTE;
+    }
+
+    private static function findBestLevel($data, Encoding $encoding, ErrorCorrection $errorCorrection)
+    {
+        $need = strlen($data);
+        for ($i = 1; $i <= 5; $i++) {
+            $level = Level::${"LEVEL_" . $i};
+            if ($level->getCapacity($encoding, $errorCorrection) > $need) {
+                return $level;
+            }
+        }
+        throw new Exception("to much data");
+    }
+
+    private static function generate($data, Level $level,  Encoding $encoding, ErrorCorrection $errorCorrection)
     {
         // Encode data
         $dataCodewords = QRCode::encode($data, $level,  $encoding, $errorCorrection);
@@ -36,7 +68,7 @@ class QRCode
         return $matrix;
     }
 
-    static function encode($data, Level $level,  Encoding $encoding, ErrorCorrection $errorCorrection)
+    private static function encode($data, Level $level,  Encoding $encoding, ErrorCorrection $errorCorrection)
     {
         $modeIndicator = $encoding->getModeIndicator();
         $characterCountIndicatorLength = $level->getCharacterCountIndicatorLength($encoding);
@@ -189,20 +221,5 @@ class QRCode
         }
 
         return $data;
-    }
-
-
-
-
-    static function  findBestLevel($data, Encoding $encoding, ErrorCorrection $errorCorrection)
-    {
-        $need = strlen($data);
-        for ($i = 1; $i <= 40; $i++) {
-            $level = Level::${"LEVEL_" . $i};
-            if ($level->getCapacity($encoding, $errorCorrection) > $need) {
-                return $level;
-            }
-        }
-        throw new Exception("to much data");
     }
 }

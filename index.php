@@ -87,6 +87,6 @@ $errorCorrection = ErrorCorrection::$CORRECTION_M;
 
 //$level =  QRCode::findBestLevel($data, $encoding, $errorCorrection);
 
-$matrix = QRCode::generate($data, $level, $encoding, $errorCorrection);
+$matrix = QRCode::create($data, $errorCorrection);
 
 echo $matrix->print();
