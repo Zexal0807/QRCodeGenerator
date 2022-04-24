@@ -10,3 +10,5 @@ Guida : [https://www.thonky.com/qr-code-tutorial/introduction](https://www.thonk
 
 - Implement Kanji encode
 - Create specific method for different content type
+- Implement logo
+- Implement all level size
