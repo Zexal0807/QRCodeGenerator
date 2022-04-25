@@ -3,28 +3,28 @@
 	"size": 45,
 	"capacity": {
 		"ENCODING_NUMERIC": {
-			"CORRECTION_L": 41,
-			"CORRECTION_M": 34,
-			"CORRECTION_Q": 27,
-			"CORRECTION_H": 17
+			"CORRECTION_L": 370,
+			"CORRECTION_M": 293,
+			"CORRECTION_Q": 207,
+			"CORRECTION_H": 154
 		},
 		"ENCODING_ALPHANUMERIC": {
-			"CORRECTION_L": 25,
-			"CORRECTION_M": 20,
-			"CORRECTION_Q": 16,
-			"CORRECTION_H": 10
+			"CORRECTION_L": 224,
+			"CORRECTION_M": 178,
+			"CORRECTION_Q": 125,
+			"CORRECTION_H": 93
 		},
 		"ENCODING_BYTE": {
-			"CORRECTION_L": 17,
-			"CORRECTION_M": 14,
-			"CORRECTION_Q": 11,
-			"CORRECTION_H": 7
+			"CORRECTION_L": 154,
+			"CORRECTION_M": 122,
+			"CORRECTION_Q": 86,
+			"CORRECTION_H": 64
 		},
 		"ENCODING_KANJI": {
-			"CORRECTION_L": 10,
-			"CORRECTION_M": 8,
-			"CORRECTION_Q": 7,
-			"CORRECTION_H": 4
+			"CORRECTION_L": 95,
+			"CORRECTION_M": 75,
+			"CORRECTION_Q": 53,
+			"CORRECTION_H": 39
 		}
 	},
 	"characterCountIndicatorLength": {
@@ -36,8 +36,8 @@
 	"codewords": {
 		"CORRECTION_L": {
 			"GROUP_1": {
-				"NUMBER_BLOCKS": 1,
-				"BLOCKS_CODEWORDS": 19
+				"NUMBER_BLOCKS": 2,
+				"BLOCKS_CODEWORDS": 78
 			},
 			"GROUP_2": {
 				"NUMBER_BLOCKS": 0,
@@ -46,8 +46,8 @@
 		},
 		"CORRECTION_M": {
 			"GROUP_1": {
-				"NUMBER_BLOCKS": 1,
-				"BLOCKS_CODEWORDS": 16
+				"NUMBER_BLOCKS": 4,
+				"BLOCKS_CODEWORDS": 31
 			},
 			"GROUP_2": {
 				"NUMBER_BLOCKS": 0,
@@ -56,22 +56,22 @@
 		},
 		"CORRECTION_Q": {
 			"GROUP_1": {
-				"NUMBER_BLOCKS": 1,
-				"BLOCKS_CODEWORDS": 13
+				"NUMBER_BLOCKS": 2,
+				"BLOCKS_CODEWORDS": 14
 			},
 			"GROUP_2": {
-				"NUMBER_BLOCKS": 0,
-				"BLOCKS_CODEWORDS": 0
+				"NUMBER_BLOCKS": 4,
+				"BLOCKS_CODEWORDS": 15
 			}
 		},
 		"CORRECTION_H": {
 			"GROUP_1": {
-				"NUMBER_BLOCKS": 1,
-				"BLOCKS_CODEWORDS": 9
+				"NUMBER_BLOCKS": 4,
+				"BLOCKS_CODEWORDS": 13
 			},
 			"GROUP_2": {
-				"NUMBER_BLOCKS": 0,
-				"BLOCKS_CODEWORDS": 0
+				"NUMBER_BLOCKS": 1,
+				"BLOCKS_CODEWORDS": 14
 			}
 		}
 	},
@@ -82,6 +82,13 @@
 		"CORRECTION_H": 17
 	},
 	"remainderBits": 0,
-	"alignmentPatternCenters": [],
-	"versionInformationString": ""
+	"alignmentPatternCenters": [
+		[6, 22],
+		[22, 6],
+		[22, 22],
+		[22, 38],
+		[38, 22],
+		[38, 38]
+	],
+	"versionInformationString": "000111110010010100"
 }
