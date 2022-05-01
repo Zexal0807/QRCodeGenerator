@@ -1,0 +1,101 @@
+{
+	"version": 17,
+	"size": 85,
+	"capacity": {
+		"ENCODING_NUMERIC": {
+			"CORRECTION_L": 1548,
+			"CORRECTION_M": 1212,
+			"CORRECTION_Q": 876,
+			"CORRECTION_H": 674
+		},
+		"ENCODING_ALPHANUMERIC": {
+			"CORRECTION_L": 938,
+			"CORRECTION_M": 734,
+			"CORRECTION_Q": 531,
+			"CORRECTION_H": 408
+		},
+		"ENCODING_BYTE": {
+			"CORRECTION_L": 644,
+			"CORRECTION_M": 504,
+			"CORRECTION_Q": 364,
+			"CORRECTION_H": 280
+		},
+		"ENCODING_KANJI": {
+			"CORRECTION_L": 397,
+			"CORRECTION_M": 310,
+			"CORRECTION_Q": 224,
+			"CORRECTION_H": 173
+		}
+	},
+	"characterCountIndicatorLength": {
+		"ENCODING_NUMERIC": 12,
+		"ENCODING_ALPHANUMERIC": 11,
+		"ENCODING_BYTE": 16,
+		"ENCODING_KANJI": 10
+	},
+	"codewords": {
+		"CORRECTION_L": {
+			"GROUP_1": {
+				"NUMBER_BLOCKS": 1,
+				"BLOCKS_CODEWORDS": 107
+			},
+			"GROUP_2": {
+				"NUMBER_BLOCKS": 5,
+				"BLOCKS_CODEWORDS": 108
+			}
+		},
+		"CORRECTION_M": {
+			"GROUP_1": {
+				"NUMBER_BLOCKS": 10,
+				"BLOCKS_CODEWORDS": 46
+			},
+			"GROUP_2": {
+				"NUMBER_BLOCKS": 1,
+				"BLOCKS_CODEWORDS": 47
+			}
+		},
+		"CORRECTION_Q": {
+			"GROUP_1": {
+				"NUMBER_BLOCKS": 1,
+				"BLOCKS_CODEWORDS": 22
+			},
+			"GROUP_2": {
+				"NUMBER_BLOCKS": 15,
+				"BLOCKS_CODEWORDS": 23
+			}
+		},
+		"CORRECTION_H": {
+			"GROUP_1": {
+				"NUMBER_BLOCKS": 2,
+				"BLOCKS_CODEWORDS": 14
+			},
+			"GROUP_2": {
+				"NUMBER_BLOCKS": 17,
+				"BLOCKS_CODEWORDS": 15
+			}
+		}
+	},
+	"errorCorrectionCodewordsForBlock": {
+		"CORRECTION_L": 28,
+		"CORRECTION_M": 28,
+		"CORRECTION_Q": 28,
+		"CORRECTION_H": 28
+	},
+	"remainderBits": 3,
+	"alignmentPatternCenters": [
+		[6, 30],
+		[6, 54],
+		[30, 6],
+		[30, 30],
+		[30, 54],
+		[30, 78],
+		[54, 6],
+		[54, 30],
+		[54, 54],
+		[54, 78],
+		[78, 30],
+		[78, 54],
+		[78, 78]
+	],
+	"versionInformationString": "010001010001011101"
+}
