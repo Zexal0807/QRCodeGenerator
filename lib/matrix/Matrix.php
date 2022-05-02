@@ -60,4 +60,9 @@ class Matrix
         $html .= "</table>";
         return $html;
     }
+
+    public function save($filename)
+    {
+        // TODO: Implement save
+    }
 }
