@@ -9,11 +9,34 @@ Guida : [https://www.thonky.com/qr-code-tutorial/introduction](https://www.thonk
 ## Todo
 
 - Implement Kanji encode
-- Create specific method for different content type
 - Implement logo
 - Implement all level size
 
 ## How to use
+
+Import `QRcode.php`
+
+Use a method for generate a Matrix Object, on Matrix object you can use `print` method for generate a html table
+
+### Available methods
+
+```php
+public static function createPhoneNumber($phone, ErrorCorrection $errorCorrection){}
+
+public static function createSms($to, $message, ErrorCorrection $errorCorrection){}
+
+public static function createEmail($to, $subject, $message, ErrorCorrection $errorCorrection){}
+
+public static function createUrl($link, ErrorCorrection $errorCorrection){}
+
+public static function createWifi($ssid, $cry, $password, ErrorCorrection $errorCorrection){}
+
+public static function createPosition($lat, $lng, ErrorCorrection $errorCorrection){}
+
+public static function createEvent($title, $location, $starttime, $endtime, ErrorCorrection $errorCorrection){}
+```
+
+## Example
 
 ```php
 require_once('./lib/QRCode.php');

@@ -7,6 +7,41 @@ require_once('./lib/MaskerMaker.php');
 class QRCode
 {
 
+    public static function createPhoneNumber($phone, ErrorCorrection $errorCorrection)
+    {
+        return QRCode::create("tel:" . $phone, $errorCorrection);
+    }
+
+    public static function createSms($to, $message, ErrorCorrection $errorCorrection)
+    {
+        return QRCode::create("SMSTO:" . $to . ":" . $message, $errorCorrection);
+    }
+
+    public static function createEmail($to, $subject, $message, ErrorCorrection $errorCorrection)
+    {
+        return QRCode::create("mailto:" . $to . "?subject=" . urlencode($subject) . "&body=" . urlencode($message), $errorCorrection);
+    }
+
+    public static function createUrl($link, ErrorCorrection $errorCorrection)
+    {
+        return QRCode::create($link, $errorCorrection);
+    }
+
+    public static function createWifi($ssid, $cry, $password, ErrorCorrection $errorCorrection)
+    {
+        return QRCode::create("WIFI:S:" . $ssid . ";T:" . $cry . ";P:" . $password . ";;", $errorCorrection);
+    }
+
+    public static function createPosition($lat, $lng, ErrorCorrection $errorCorrection)
+    {
+        return QRCode::create("https://maps.google.com/local?q=" . $lat . "," . $lng, $errorCorrection);
+    }
+
+    public static function createEvent($title, $location, $starttime, $endtime, ErrorCorrection $errorCorrection)
+    {
+        return QRCode::create("BEGIN:VEVENT\nSUMMARY:" . $title . "\nLOCATION:" . $location . "\nDTSTART:" . str_replace(["/", ":", " "], ["", "", "T"], $starttime) . "\nDTEND:" . str_replace(["/", ":", " "], ["", "", "T"], $endtime) . "\nEND:VEVENT\n", $errorCorrection);
+    }
+
     public static function create($data, ErrorCorrection $errorCorrection)
     {
         $encoding = QRCode::findEnconding($data);
