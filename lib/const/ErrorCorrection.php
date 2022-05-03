@@ -16,6 +16,11 @@ class ErrorCorrection
         return $this->correction;
     }
 
+    public function getValue()
+    {
+        return $this->value;
+    }
+
     public function getInformationBitOfMask($mask)
     {
         return ErrorCorrection::$informationBit[$this->getCorrection()][$mask];
