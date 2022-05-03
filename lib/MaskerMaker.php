@@ -25,7 +25,7 @@ class MaskerMaker
 
     private static function generateMatrix($mask, ErrorCorrection $errorCorrection, Matrix $data)
     {
-        $matrix = new Matrix($data->getSize());
+        $matrix = new Matrix($data->getSize(), $errorCorrection->getValue());
         for ($y = 0; $y < $data->getSize(); $y++) {
             for ($x = 0; $x < $data->getSize(); $x++) {
                 if ($data->getCell($y, $x)->isDataCell()) {

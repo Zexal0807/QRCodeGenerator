@@ -5,10 +5,12 @@ class Matrix
 {
     private $size;
     private $data;
+    private $errorCorrectionValue;
 
-    public function __construct($size)
+    public function __construct($size, $errorCorrectionValue)
     {
         $this->size = $size;
+        $this->errorCorrectionValue = $errorCorrectionValue;
 
         $this->data = [];
         for ($y = 0; $y < $size; $y++) {

@@ -95,7 +95,7 @@ class QRCode
         $data = implode("", $data);
         $data = $data . str_repeat("0", $level->getRemainderBits());
 
-        $matrix = new MatrixManager($level);
+        $matrix = new MatrixManager($level, $errorCorrection->getValue());
         $matrix->setData($data);
         $matrix = $matrix->getMatrix();
 

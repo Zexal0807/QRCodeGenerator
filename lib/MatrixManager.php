@@ -5,16 +5,18 @@ class MatrixManager
 {
     private $data;
     private $level;
+    private $errorCorrection;
     public $matrix;
 
-    public function __construct(Level $level)
+    public function __construct(Level $level, ErrorCorrection $errorCorrection)
     {
         $this->level = $level;
+        $this->errorCorrection = $errorCorrection;
     }
 
     private function resetMatrix()
     {
-        $this->matrix = new Matrix($this->level->getSize());
+        $this->matrix = new Matrix($this->level->getSize(), $this->errorCorrection->getValue());
     }
 
     public function getMatrix()
