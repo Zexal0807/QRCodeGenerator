@@ -76,7 +76,7 @@
 		}
 	},
 	"errorCorrectionCodewordsForBlock": {
-		"CORRECTION_L": 16,
+		"CORRECTION_L": 26,
 		"CORRECTION_M": 28,
 		"CORRECTION_Q": 30,
 		"CORRECTION_H": 30
