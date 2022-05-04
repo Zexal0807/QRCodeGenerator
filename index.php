@@ -13,6 +13,13 @@
             background-color: blue;
         }
 
+        td[color="LOGO"] {
+            background-image: url(doc/example.png);
+            background-position: center;
+            background-size: 90%;
+            background-repeat: no-repeat;
+        }
+
         td {
             border-collapse: collapse;
         }
@@ -40,5 +47,6 @@ $errorCorrection = ErrorCorrection::$CORRECTION_M;
 //$level =  QRCode::findBestLevel($data, $encoding, $errorCorrection);
 
 $matrix = QRCode::create($data, $errorCorrection);
+$matrix->addLogo("doc/example.png");
 
 echo $matrix->print();

@@ -9,7 +9,6 @@ Guida : [https://www.thonky.com/qr-code-tutorial/introduction](https://www.thonk
 ## Todo
 
 - Implement Kanji encode
-- Implement logo
 - Implement all level size
 
 ## How to use
@@ -45,6 +44,7 @@ $data = "tel:3333333333";
 $errorCorrection = ErrorCorrection::$CORRECTION_M;
 
 $matrix = QRCode::create($data, $errorCorrection);
+$matrix->addLogo("doc/example.png");
 
 echo $matrix->print();
 
@@ -66,6 +66,13 @@ td[color="WHITE"] {
 
 td[color="RESERVED"] {
   background-color: blue;
+}
+
+td[color="LOGO"] {
+  background-image: url(doc/example.png);
+  background-position: center;
+  background-size: 90%;
+  background-repeat: no-repeat;
 }
 
 td {
