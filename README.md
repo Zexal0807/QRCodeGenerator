@@ -40,14 +40,10 @@ public static function createEvent($title, $location, $starttime, $endtime, Erro
 ```php
 require_once('./lib/QRCode.php');
 
-$data = "tel:3333333333";
 $errorCorrection = ErrorCorrection::$CORRECTION_M;
 
-$matrix = QRCode::create($data, $errorCorrection);
-$matrix->addLogo("doc/example.png");
-
+$matrix = QRCode::createPhoneNumber("createPhoneNumber", $errorCorrection);
 echo $matrix->print();
-
 ```
 
 `print` method return a html string where there's a table where each cell a attribute color
@@ -71,7 +67,7 @@ td[color="RESERVED"] {
 td[color="LOGO"] {
   background-image: url(doc/example.png);
   background-position: center;
-  background-size: 90%;
+  background-size: 60%;
   background-repeat: no-repeat;
 }
 
@@ -92,3 +88,20 @@ Reserved cell will bge used in future, for example for add image
 Here the result
 
 ![Result](./doc/example.png)
+
+You can alsa add a logo in center of QRCode using `addLogo($filepath)` on matrix object
+
+```php
+require_once('./lib/QRCode.php');
+
+$errorCorrection = ErrorCorrection::$CORRECTION_M;
+
+$matrix = QRCode::createPhoneNumber("createPhoneNumber", $errorCorrection);
+$matrix->addLogo("doc/logo.png");
+
+echo $matrix->print();
+```
+
+Here the result
+
+![Result](./doc/example-logo.png)
