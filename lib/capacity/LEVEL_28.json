@@ -1,0 +1,121 @@
+{
+	"version": 28,
+	"size": 129,
+	"capacity": {
+		"ENCODING_NUMERIC": {
+			"CORRECTION_L": 3669,
+			"CORRECTION_M": 2857,
+			"CORRECTION_Q": 2085,
+			"CORRECTION_H": 1581
+		},
+		"ENCODING_ALPHANUMERIC": {
+			"CORRECTION_L": 2223,
+			"CORRECTION_M": 1732,
+			"CORRECTION_Q": 1263,
+			"CORRECTION_H": 958
+		},
+		"ENCODING_BYTE": {
+			"CORRECTION_L": 1528,
+			"CORRECTION_M": 1190,
+			"CORRECTION_Q": 868,
+			"CORRECTION_H": 658
+		},
+		"ENCODING_KANJI": {
+			"CORRECTION_L": 940,
+			"CORRECTION_M": 732,
+			"CORRECTION_Q": 534,
+			"CORRECTION_H": 405
+		}
+	},
+	"characterCountIndicatorLength": {
+		"ENCODING_NUMERIC": 14,
+		"ENCODING_ALPHANUMERIC": 13,
+		"ENCODING_BYTE": 16,
+		"ENCODING_KANJI": 12
+	},
+	"codewords": {
+		"CORRECTION_L": {
+			"GROUP_1": {
+				"NUMBER_BLOCKS": 3,
+				"BLOCKS_CODEWORDS": 117
+			},
+			"GROUP_2": {
+				"NUMBER_BLOCKS": 10,
+				"BLOCKS_CODEWORDS": 118
+			}
+		},
+		"CORRECTION_M": {
+			"GROUP_1": {
+				"NUMBER_BLOCKS": 3,
+				"BLOCKS_CODEWORDS": 45
+			},
+			"GROUP_2": {
+				"NUMBER_BLOCKS": 23,
+				"BLOCKS_CODEWORDS": 46
+			}
+		},
+		"CORRECTION_Q": {
+			"GROUP_1": {
+				"NUMBER_BLOCKS": 4,
+				"BLOCKS_CODEWORDS": 24
+			},
+			"GROUP_2": {
+				"NUMBER_BLOCKS": 31,
+				"BLOCKS_CODEWORDS": 25
+			}
+		},
+		"CORRECTION_H": {
+			"GROUP_1": {
+				"NUMBER_BLOCKS": 11,
+				"BLOCKS_CODEWORDS": 15
+			},
+			"GROUP_2": {
+				"NUMBER_BLOCKS": 31,
+				"BLOCKS_CODEWORDS": 16
+			}
+		}
+	},
+	"errorCorrectionCodewordsForBlock": {
+		"CORRECTION_L": 30,
+		"CORRECTION_M": 28,
+		"CORRECTION_Q": 30,
+		"CORRECTION_H": 30
+	},
+	"remainderBits": 3,
+	"alignmentPatternCenters": [
+		[6, 26],
+		[6, 50],
+		[6, 74],
+		[6, 98],
+		[26, 6],
+		[26, 26],
+		[26, 50],
+		[26, 74],
+		[26, 98],
+		[26, 122],
+		[50, 6],
+		[50, 26],
+		[50, 50],
+		[50, 74],
+		[50, 98],
+		[50, 122],
+		[74, 6],
+		[74, 26],
+		[74, 50],
+		[74, 74],
+		[74, 98],
+		[74, 122],
+		[98, 6],
+		[98, 26],
+		[98, 50],
+		[98, 74],
+		[98, 98],
+		[98, 122],
+		[122, 26],
+		[122, 50],
+		[122, 74],
+		[122, 98],
+		[122, 122]
+	],
+	"versionInformationString": "011100110000011010"
+}
