@@ -60,7 +60,7 @@ class Matrix
         }
         $logoSize -= 2;
 
-        $html = "<table>";
+        $html = '<table style="width: 500; height: 500; margin: 15px; border-collapse: collapse;">';
         for ($i = 0; $i < $size; $i++) {
             $html .= "<tr>";
             for ($j = 0; $j < $size; $j++) {
@@ -71,11 +71,11 @@ class Matrix
                     $i < ($size - $logoSize) / 2 + $logoSize
                 ) {
                     if ($this->logo) {
-                        $html .= '<td color="LOGO" rowspan="' . $logoSize . '" colspan="' . $logoSize . '" style="background-image: url(' . $this->logoFilepath . ')"></td>';
+                        $html .= '<td color="LOGO" rowspan="' . $logoSize . '" colspan="' . $logoSize . '" style="background-image: url(' . $this->logoFilepath . '); background-position: center; background-size: 60%; background-repeat: no-repeat;"></td>';
                         $this->logo = false;
                     }
                 } else {
-                    $html .= '<td color="' . $this->data[$i][$j]->getColor() . '"></td>';
+                    $html .= '<td style="border-collapse: collapse; background-color:' . $this->data[$i][$j]->getColor() . '"></td>';
                 }
             }
             $html .= "</tr>";
