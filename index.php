@@ -11,6 +11,6 @@ $encoding = Encoding::$ENCODING_BYTE;
 $errorCorrection = ErrorCorrection::$CORRECTION_M;
 
 $matrix = QRCode::create($data, $errorCorrection);
-$matrix->addLogo("doc/logo.png");
+$matrix->addLogo("doc/logo.png", 60);
 
-echo $matrix->print();
+echo $matrix->print(500);

@@ -47,15 +47,15 @@ $matrix = QRCode::createPhoneNumber("createPhoneNumber", $errorCorrection);
 echo $matrix->print();
 ```
 
-`print` method return a html string where there's a table where each cell a attribute color
-
-Reserved cell will bge used in future, for example for add image
+`print($matrixSize = 500)` method return a html string where there's a table where each cell a attribute color
+You can specify the matrix size in pixel, by default is 500 pixel
 
 Here the result
 
 ![Result](./doc/example.png)
 
-You can alsa add a logo in center of QRCode using `addLogo($filepath)` on matrix object
+You can alsa add a logo in center of QRCode using `addLogo($filepath, $logoSize = 60)` on matrix object
+You can specify the size, by default is 60% of the space
 
 ```php
 require_once('./lib/QRCode.php');
