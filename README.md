@@ -9,7 +9,6 @@ Guida : [https://www.thonky.com/qr-code-tutorial/introduction](https://www.thonk
 ## Todo
 
 - Implement Kanji encode
-- Implement all level size
 - Implement save method
 
 ## How to use

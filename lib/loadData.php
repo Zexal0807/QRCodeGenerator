@@ -18,7 +18,6 @@ ErrorCorrection::$CORRECTION_H = new ErrorCorrection('CORRECTION_H', 0.30);
 
 require_once('./lib/const/Level.php');
 
-// TODO: Implement different level
 Level::$LEVEL_1 = new Level(
     'LEVEL_1',
     json_decode(file_get_contents(dirname(__FILE__) . "/capacity/LEVEL_1.json"), true)
