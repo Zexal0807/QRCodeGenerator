@@ -42,7 +42,7 @@ require_once('./lib/QRCode.php');
 
 $errorCorrection = ErrorCorrection::$CORRECTION_M;
 
-$matrix = QRCode::createPhoneNumber("createPhoneNumber", $errorCorrection);
+$matrix = QRCode::createPhoneNumber("3333333333", $errorCorrection);
 echo $matrix->print();
 ```
 
@@ -61,7 +61,7 @@ require_once('./lib/QRCode.php');
 
 $errorCorrection = ErrorCorrection::$CORRECTION_M;
 
-$matrix = QRCode::createPhoneNumber("createPhoneNumber", $errorCorrection);
+$matrix = QRCode::createPhoneNumber("3333333333", $errorCorrection);
 $matrix->addLogo("doc/logo.png");
 
 echo $matrix->print();
