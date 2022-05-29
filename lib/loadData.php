@@ -214,3 +214,7 @@ Level::$LEVEL_39 = new Level(
     json_decode(file_get_contents(dirname(__FILE__) . "/capacity/LEVEL_39.json"), true)
 );
 
+Level::$LEVEL_40 = new Level(
+    'LEVEL_40',
+    json_decode(file_get_contents(dirname(__FILE__) . "/capacity/LEVEL_40.json"), true)
+);

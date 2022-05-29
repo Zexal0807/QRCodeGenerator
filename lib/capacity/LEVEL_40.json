@@ -1,0 +1,134 @@
+{
+	"version": 40,
+	"size": 177,
+	"capacity": {
+		"ENCODING_NUMERIC": {
+			"CORRECTION_L": 7089,
+			"CORRECTION_M": 5596,
+			"CORRECTION_Q": 3993,
+			"CORRECTION_H": 3057
+		},
+		"ENCODING_ALPHANUMERIC": {
+			"CORRECTION_L": 4296,
+			"CORRECTION_M": 3391,
+			"CORRECTION_Q": 2420,
+			"CORRECTION_H": 1852
+		},
+		"ENCODING_BYTE": {
+			"CORRECTION_L": 2953,
+			"CORRECTION_M": 2331,
+			"CORRECTION_Q": 1663,
+			"CORRECTION_H": 1273
+		},
+		"ENCODING_KANJI": {
+			"CORRECTION_L": 1817,
+			"CORRECTION_M": 1435,
+			"CORRECTION_Q": 1024,
+			"CORRECTION_H": 784
+		}
+	},
+	"characterCountIndicatorLength": {
+		"ENCODING_NUMERIC": 14,
+		"ENCODING_ALPHANUMERIC": 13,
+		"ENCODING_BYTE": 16,
+		"ENCODING_KANJI": 12
+	},
+	"codewords": {
+		"CORRECTION_L": {
+			"GROUP_1": {
+				"NUMBER_BLOCKS": 19,
+				"BLOCKS_CODEWORDS": 118
+			},
+			"GROUP_2": {
+				"NUMBER_BLOCKS": 6,
+				"BLOCKS_CODEWORDS": 119
+			}
+		},
+		"CORRECTION_M": {
+			"GROUP_1": {
+				"NUMBER_BLOCKS": 18,
+				"BLOCKS_CODEWORDS": 47
+			},
+			"GROUP_2": {
+				"NUMBER_BLOCKS": 31,
+				"BLOCKS_CODEWORDS": 48
+			}
+		},
+		"CORRECTION_Q": {
+			"GROUP_1": {
+				"NUMBER_BLOCKS": 34,
+				"BLOCKS_CODEWORDS": 24
+			},
+			"GROUP_2": {
+				"NUMBER_BLOCKS": 34,
+				"BLOCKS_CODEWORDS": 25
+			}
+		},
+		"CORRECTION_H": {
+			"GROUP_1": {
+				"NUMBER_BLOCKS": 20,
+				"BLOCKS_CODEWORDS": 15
+			},
+			"GROUP_2": {
+				"NUMBER_BLOCKS": 61,
+				"BLOCKS_CODEWORDS": 16
+			}
+		}
+	},
+	"errorCorrectionCodewordsForBlock": {
+		"CORRECTION_L": 30,
+		"CORRECTION_M": 28,
+		"CORRECTION_Q": 30,
+		"CORRECTION_H": 30
+	},
+	"remainderBits": 0,
+	"alignmentPatternCenters": [
+		[6, 30],
+		[6, 58],
+		[6, 86],
+		[6, 114],
+		[6, 142],
+		[30, 6],
+		[30, 30],
+		[30, 58],
+		[30, 86],
+		[30, 114],
+		[30, 142],
+		[30, 170],
+		[58, 6],
+		[58, 30],
+		[58, 58],
+		[58, 86],
+		[58, 114],
+		[58, 142],
+		[58, 170],
+		[86, 6],
+		[86, 30],
+		[86, 58],
+		[86, 86],
+		[86, 114],
+		[86, 142],
+		[86, 170],
+		[114, 6],
+		[114, 30],
+		[114, 58],
+		[114, 86],
+		[114, 114],
+		[114, 142],
+		[114, 170],
+		[142, 6],
+		[142, 30],
+		[142, 58],
+		[142, 86],
+		[142, 114],
+		[142, 142],
+		[142, 170],
+		[170, 30],
+		[170, 58],
+		[170, 86],
+		[170, 114],
+		[170, 142],
+		[170, 170]
+	],
+	"versionInformationString": "101000114001141001"
+}
